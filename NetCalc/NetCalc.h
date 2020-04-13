@@ -1,32 +1,18 @@
-
-// NetCalc.h : main header file for the PROJECT_NAME application
-//
-
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "include 'pch.h' before including this file for PCH"
+    #error "include 'pch.h' before including this file for PCH"
 #endif
 
-#include "resource.h"		// main symbols
+#include "resource.h"
 
-
-// CNetCalcApp:
-// See NetCalc.cpp for the implementation of this class
-//
-
-class CNetCalcApp : public CWinApp
-{
+class CNetCalcApp : public CWinApp {
 public:
-	CNetCalcApp();
-
-// Overrides
+    CNetCalcApp();
 public:
-	virtual BOOL InitInstance();
+    virtual BOOL InitInstance();
 
-// Implementation
-
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 };
 
 extern CNetCalcApp theApp;
