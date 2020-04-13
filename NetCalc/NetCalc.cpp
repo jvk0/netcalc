@@ -7,11 +7,9 @@
     #define new DEBUG_NEW
 #endif
 
-
 BEGIN_MESSAGE_MAP(CNetCalcApp, CWinApp)
     ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
-
 
 // CNetCalcApp construction
 CNetCalcApp::CNetCalcApp()
@@ -20,10 +18,8 @@ CNetCalcApp::CNetCalcApp()
     // Place all significant initialization in InitInstance
 }
 
-
 // The one and only CNetCalcApp object
 CNetCalcApp theApp;
-
 
 // CNetCalcApp initialization
 BOOL CNetCalcApp::InitInstance()

@@ -3,11 +3,9 @@
 #include "NetCalc.h"
 #include "NetCalcDlg.h"
 
-
 #ifdef _DEBUG
     #define new DEBUG_NEW
 #endif
-
 
 // CAboutDlg dialog used for App About
 class CAboutDlg : public CDialogEx {
@@ -35,7 +33,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
-
 // CNetCalcDlg dialog
 CNetCalcDlg::CNetCalcDlg(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_NETCALC_DIALOG, pParent)
@@ -53,7 +50,6 @@ BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
     ON_WM_PAINT()
     ON_WM_QUERYDRAGICON()
 END_MESSAGE_MAP()
-
 
 // CNetCalcDlg message handlers
 BOOL CNetCalcDlg::OnInitDialog()
