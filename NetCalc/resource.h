@@ -7,12 +7,9 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_NETCALC_DIALOG              102
 #define IDD_OLE_PL_CALC                 105
-#define IDD_OLE_PROPPAGE_LARGE          106
 #define IDD_OLE_PL_SUB                  106
-#define IDD_OLE_PROPPAGE_LARGE1         107
 #define IDD_OLE_PL_MASK                 107
 #define IDR_MAINFRAME                   128
-#define IDC_EDIT1                       1000
 #define IDC_TAB_MAIN                    1001
 
 // Next default values for new objects
