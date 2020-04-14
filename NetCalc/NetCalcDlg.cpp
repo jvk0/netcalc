@@ -45,6 +45,18 @@ void CNetCalcDlg::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
 }
 
+void CNetCalcDlg::OnOK()
+{
+    CDialog::OnOK();
+}
+
+void CNetCalcDlg::OnCancel()
+{
+    // Prevent Esc rom closing the dialog  
+    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
+        CDialog::OnCancel();
+}
+
 BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
     ON_WM_SYSCOMMAND()
     ON_WM_PAINT()

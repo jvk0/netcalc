@@ -12,6 +12,9 @@ protected:
     HICON m_hIcon;
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    
+    virtual void OnOK() override;
+    virtual void OnCancel() override;
 
     // Generated message map functions
     virtual BOOL OnInitDialog();

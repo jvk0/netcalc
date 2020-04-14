@@ -1,3 +1,7 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by NetCalc.rc
+
 #define IDR_MAINFRAME					128
 #define IDM_ABOUTBOX					0x0010
 #define IDD_ABOUTBOX					100

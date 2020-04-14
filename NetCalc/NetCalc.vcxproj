@@ -188,7 +188,7 @@
     <ClInclude Include="NetCalc.h" />
     <ClInclude Include="NetCalcDlg.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
