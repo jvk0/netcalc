@@ -2,6 +2,7 @@
 
 #include "CTabCalc.h"
 #include "CTabSub.h"
+#include "CTabMask.h"
 
 class CNetCalcDlg : public CDialogEx {
 public:
@@ -18,6 +19,7 @@ protected:
 
     CTabCalc m_tabCalc;
     CTabSub  m_tabSub;
+    CTabMask m_tabMask;
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
@@ -27,11 +29,11 @@ protected:
     void initTabs();
 
     // Generated message map functions
+    afx_msg void OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult);
     virtual BOOL OnInitDialog();
     afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
     afx_msg void OnPaint();
     afx_msg HCURSOR OnQueryDragIcon();
-    DECLARE_MESSAGE_MAP()
-public:
-    afx_msg void OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult);
+    DECLARE_MESSAGE_MAP()  
 };
+
