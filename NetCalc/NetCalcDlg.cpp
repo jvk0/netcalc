@@ -91,6 +91,7 @@ BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
     ON_WM_SYSCOMMAND()
     ON_WM_PAINT()
     ON_WM_QUERYDRAGICON()
+    ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &CNetCalcDlg::OnTcnSelChangeTabMain)
 END_MESSAGE_MAP()
 
 // CNetCalcDlg message handlers
@@ -171,3 +172,23 @@ HCURSOR CNetCalcDlg::OnQueryDragIcon()
     return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CNetCalcDlg::OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    *pResult = 0;
+ 
+    int selectedTab = m_ctrTabMain.GetCurSel();
+
+    switch (selectedTab) {
+        case 0:
+            m_tabCalc.ShowWindow(SW_SHOW);
+            m_tabSub.ShowWindow(SW_HIDE);
+            break;
+        case 1:
+            m_tabCalc.ShowWindow(SW_HIDE);
+            m_tabSub.ShowWindow(SW_SHOW);
+            break;
+        default:
+            m_tabCalc.ShowWindow(SW_SHOW);
+            m_tabSub.ShowWindow(SW_HIDE);
+    }
+}
