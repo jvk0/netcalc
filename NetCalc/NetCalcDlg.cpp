@@ -47,7 +47,9 @@ void CNetCalcDlg::DoDataExchange(CDataExchange* pDX)
 
 void CNetCalcDlg::OnOK()
 {
-    CDialog::OnOK();
+    // Prevent Enter from closing the dialog  
+    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
+        CDialog::OnOK();
 }
 
 void CNetCalcDlg::OnCancel()
