@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "NetCalc.h"
 #include "NetCalcDlg.h"
@@ -43,6 +43,7 @@ CNetCalcDlg::CNetCalcDlg(CWnd* pParent /*=nullptr*/)
 void CNetCalcDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_TAB_MAIN, m_ctrTabMain);
 }
 
 void CNetCalcDlg::OnOK()
@@ -57,6 +58,25 @@ void CNetCalcDlg::OnCancel()
     // Prevent Esc from closing the dialog  
     if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
         CDialog::OnCancel();
+}
+
+void CNetCalcDlg::initTabs()
+{
+    CTabCtrl* pTabCtrl = (CTabCtrl*) GetDlgItem(IDC_TAB_MAIN);
+    
+    m_tabCalc.Create(IDD_OLE_PL_CALC, pTabCtrl);
+
+    TCITEM tab1;
+    tab1.mask = TCIF_TEXT | TCIF_PARAM;
+    tab1.lParam = (LPARAM) &m_tabCalc;
+    tab1.pszText = L"Kalkulačka";
+    pTabCtrl->InsertItem(0, &tab1);
+
+    CRect rect;
+    pTabCtrl->GetItemRect(0, &rect);
+    m_tabCalc.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+    m_tabCalc.ShowWindow(SW_SHOW);
 }
 
 BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
@@ -96,6 +116,7 @@ BOOL CNetCalcDlg::OnInitDialog()
     SetIcon(m_hIcon, FALSE);    // Set small icon
 
     // ****** Extra initialization ******
+    initTabs();
 
     return TRUE;    // "return TRUE" unless you set the focus to a control
 }
@@ -142,4 +163,3 @@ HCURSOR CNetCalcDlg::OnQueryDragIcon()
     return static_cast<HCURSOR>(m_hIcon);
 }
 
-// ****** End of VS generated code ******

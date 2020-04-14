@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CTabCalc.h"
+
 class CNetCalcDlg : public CDialogEx {
 public:
     CNetCalcDlg(CWnd* pParent = nullptr);   // Standard constructor
@@ -11,10 +13,16 @@ public:
 protected:
     HICON m_hIcon;
 
+    CTabCtrl m_ctrTabMain;
+
+    CTabCalc m_tabCalc;
+
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
     virtual void OnOK() override;
     virtual void OnCancel() override;
+
+    void initTabs();
 
     // Generated message map functions
     virtual BOOL OnInitDialog();
