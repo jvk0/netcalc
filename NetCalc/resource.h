@@ -6,8 +6,9 @@
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
 #define IDD_NETCALC_DIALOG              102
-#define IDD_OLE_PROPPAGE_LARGE          105
 #define IDD_OLE_PL_CALC                 105
+#define IDD_OLE_PROPPAGE_LARGE          106
+#define IDD_OLE_PL_SUB                  106
 #define IDR_MAINFRAME                   128
 #define IDC_EDIT1                       1000
 #define IDC_TAB_MAIN                    1001
@@ -16,7 +17,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        131
+#define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1004
 #define _APS_NEXT_SYMED_VALUE           101

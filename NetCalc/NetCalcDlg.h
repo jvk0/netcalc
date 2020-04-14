@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CTabCalc.h"
+#include "CTabSub.h"
 
 class CNetCalcDlg : public CDialogEx {
 public:
@@ -16,6 +17,7 @@ protected:
     CTabCtrl m_ctrTabMain;
 
     CTabCalc m_tabCalc;
+    CTabSub  m_tabSub;
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     

@@ -61,22 +61,30 @@ void CNetCalcDlg::OnCancel()
 }
 
 void CNetCalcDlg::initTabs()
-{
-    CTabCtrl* pTabCtrl = (CTabCtrl*) GetDlgItem(IDC_TAB_MAIN);
-    
-    m_tabCalc.Create(IDD_OLE_PL_CALC, pTabCtrl);
+{  
+    m_tabCalc.Create(IDD_OLE_PL_CALC, &m_ctrTabMain);
+    m_tabSub.Create(IDD_OLE_PL_SUB, &m_ctrTabMain);
 
     TCITEM tab1;
     tab1.mask = TCIF_TEXT | TCIF_PARAM;
     tab1.lParam = (LPARAM) &m_tabCalc;
     tab1.pszText = L"Kalkulačka";
-    pTabCtrl->InsertItem(0, &tab1);
+    m_ctrTabMain.InsertItem(0, &tab1);
+
+    TCITEM tab2;
+    tab2.mask = TCIF_TEXT | TCIF_PARAM;
+    tab2.lParam = (LPARAM) &m_tabSub;
+    tab2.pszText = L"VLSM podsieťovanie";
+    m_ctrTabMain.InsertItem(1, &tab2);
 
     CRect rect;
-    pTabCtrl->GetItemRect(0, &rect);
+    m_ctrTabMain.GetItemRect(0, &rect);
+   
     m_tabCalc.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
-
+    m_tabSub.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+   
     m_tabCalc.ShowWindow(SW_SHOW);
+    m_tabSub.ShowWindow(SW_HIDE);
 }
 
 BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)

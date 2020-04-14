@@ -39,6 +39,9 @@
     <ClInclude Include="CTabCalc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CTabSub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NetCalc.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CTabCalc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTabSub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
