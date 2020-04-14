@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "NetCalc.h"
+#include "CNetCalcApp.h"
 #include "CTabSub.h"
 
 

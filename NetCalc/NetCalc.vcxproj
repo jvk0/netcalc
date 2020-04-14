@@ -188,8 +188,8 @@
     <ClInclude Include="CTabSub.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IP4Calc.h" />
-    <ClInclude Include="NetCalc.h" />
-    <ClInclude Include="NetCalcDlg.h" />
+    <ClInclude Include="CNetCalcApp.h" />
+    <ClInclude Include="CNetCalcDlg.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
@@ -199,8 +199,8 @@
     <ClCompile Include="CTabMask.cpp" />
     <ClCompile Include="CTabSub.cpp" />
     <ClCompile Include="IP4Calc.cpp" />
-    <ClCompile Include="NetCalc.cpp" />
-    <ClCompile Include="NetCalcDlg.cpp" />
+    <ClCompile Include="CNetCalcApp.cpp" />
+    <ClCompile Include="CNetCalcDlg.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

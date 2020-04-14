@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 
-#include "NetCalc.h"
-#include "NetCalcDlg.h"
+#include "CNetCalcApp.h"
+#include "CNetCalcDlg.h"
 
 #ifdef _DEBUG
     #define new DEBUG_NEW
