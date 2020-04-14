@@ -54,7 +54,7 @@ void CNetCalcDlg::OnOK()
 
 void CNetCalcDlg::OnCancel()
 {
-    // Prevent Esc rom closing the dialog  
+    // Prevent Esc from closing the dialog  
     if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
         CDialog::OnCancel();
 }
