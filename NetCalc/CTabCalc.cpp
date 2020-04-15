@@ -2,7 +2,7 @@
 
 #include "resource.h"
 
-#include "CNetCalcApp.h"
+#include "NetCalc.h"
 #include "CTabCalc.h"
 
 #include "IP4Calc.h"

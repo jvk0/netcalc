@@ -1,6 +1,6 @@
 #include "pch.h"
 
-#include "CNetCalcApp.h"
+#include "NetCalc.h"
 #include "CNetCalcDlg.h"
 
 #ifdef _DEBUG

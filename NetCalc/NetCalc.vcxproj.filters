@@ -39,13 +39,13 @@
     <ClInclude Include="CTabMask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CNetCalcApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CNetCalcDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IP4Format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetCalc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,13 +65,13 @@
     <ClCompile Include="CTabMask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CNetCalcApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CNetCalcDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IP4Format.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetCalc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

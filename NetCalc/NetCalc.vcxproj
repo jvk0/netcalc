@@ -188,7 +188,7 @@
     <ClInclude Include="CTabSub.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IP4Calc.h" />
-    <ClInclude Include="CNetCalcApp.h" />
+    <ClInclude Include="NetCalc.h" />
     <ClInclude Include="CNetCalcDlg.h" />
     <ClInclude Include="IP4Format.h" />
     <ClInclude Include="pch.h" />
@@ -200,7 +200,7 @@
     <ClCompile Include="CTabMask.cpp" />
     <ClCompile Include="CTabSub.cpp" />
     <ClCompile Include="IP4Calc.cpp" />
-    <ClCompile Include="CNetCalcApp.cpp" />
+    <ClCompile Include="NetCalc.cpp" />
     <ClCompile Include="CNetCalcDlg.cpp" />
     <ClCompile Include="IP4Format.cpp" />
     <ClCompile Include="pch.cpp">
