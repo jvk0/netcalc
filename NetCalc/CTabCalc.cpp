@@ -116,6 +116,9 @@ void CTabCalc::OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult)
     
     int newNum = (pNMUpDown->iPos + pNMUpDown->iDelta);
     
+    if (newNum < 1)
+        return; // Bug fix
+    
     m_valIPmask = IP4Calc::prefix2mask(newNum);
 
     UpdateData(FALSE);
