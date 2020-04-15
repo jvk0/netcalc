@@ -14,6 +14,7 @@ IMPLEMENT_DYNAMIC(CTabCalc, CDialogEx)
 
 CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_CALC, pParent)
+    , m_valEdPref(_T(""))
 {
 
 }
@@ -42,6 +43,9 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_IP_CALCIP, m_ctrIPAddr);
     DDX_Control(pDX, IDC_IP_CALCMASK, m_ctrIPMask);
     DDX_Control(pDX, IDC_ST_MASK, m_ctrSTMask);
+    DDX_Control(pDX, IDC_ED_CALCPREF, m_ctrEdPref);
+    DDX_Text(pDX, IDC_ED_CALCPREF, m_valEdPref);
+    DDX_Control(pDX, IDC_SPIN_CALCPREF, m_ctrSpinPref);
 }
 
 void CTabCalc::OnOK()
@@ -68,6 +72,12 @@ BOOL CTabCalc::OnInitDialog()
 
     checkMask();
 
+    m_ctrEdPref.SetLimitText(2);
+    m_valEdPref = L"24"; // 255.255.255.0
+    m_ctrSpinPref.SetRange(1, 32);
+
+    UpdateData(FALSE);
+
     return TRUE;
 }
 
@@ -84,9 +94,18 @@ END_MESSAGE_MAP()
 
 void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
 {
+    static bool prevError = false;
+
     LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
-    
-    checkMask();
+
+    if (!checkMask()) {
+        if (!prevError) {
+            MessageBeep(MB_ICONEXCLAMATION);
+            prevError = true;
+        }
+    } else {
+        prevError = false;
+    }
 
     *pResult = 0;
 }

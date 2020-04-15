@@ -17,6 +17,7 @@ public:
 protected:
     CIPAddressCtrl m_ctrIPAddr;
     CIPAddressCtrl m_ctrIPMask;
+    CStatic m_ctrSTMask;
 
     bool checkMask();
 
@@ -25,10 +26,11 @@ protected:
     virtual void OnOK() override;
     virtual void OnCancel() override;
 
+    afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
 public:
-    
-    afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
-    CStatic m_ctrSTMask;
+    CEdit m_ctrEdPref;
+    CString m_valEdPref;
+    CSpinButtonCtrl m_ctrSpinPref;
 };
