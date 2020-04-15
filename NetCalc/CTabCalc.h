@@ -15,9 +15,13 @@ public:
     #endif
 
 protected:
-    CIPAddressCtrl m_ctrIPAddr;
-    CIPAddressCtrl m_ctrIPMask;
-    CStatic m_ctrSTMask;
+    CIPAddressCtrl  m_ctrIPAddr;
+    CIPAddressCtrl  m_ctrIPMask;
+    CStatic         m_ctrSTMask;
+    CSpinButtonCtrl m_ctrSpinPref;
+    CEdit           m_ctrEdPref;
+
+    DWORD m_valIPmask;
 
     bool checkMask();
 
@@ -27,11 +31,7 @@ protected:
     virtual void OnCancel() override;
 
     afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
-    virtual BOOL OnInitDialog() override;
-    DECLARE_MESSAGE_MAP()
-public:
-    CString m_valEdPref;
-    CSpinButtonCtrl m_ctrSpinPref;
-    DWORD m_valIPmask;
     afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual BOOL OnInitDialog() override;
+    DECLARE_MESSAGE_MAP()   
 };

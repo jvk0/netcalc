@@ -14,7 +14,6 @@ IMPLEMENT_DYNAMIC(CTabCalc, CDialogEx)
 
 CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_CALC, pParent)
-    , m_valEdPref(_T(""))
     , m_valIPmask(0)
 {
 
@@ -42,10 +41,10 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_IP_CALCIP, m_ctrIPAddr);
     DDX_Control(pDX, IDC_IP_CALCMASK, m_ctrIPMask);
-    DDX_Control(pDX, IDC_ST_MASK, m_ctrSTMask);
-    DDX_Text(pDX, IDC_ED_CALCPREF, m_valEdPref);
+    DDX_Control(pDX, IDC_ST_CALCISMASK, m_ctrSTMask);
     DDX_Control(pDX, IDC_SPIN_CALCPREF, m_ctrSpinPref);
     DDX_IPAddress(pDX, IDC_IP_CALCMASK, m_valIPmask);
+    DDX_Control(pDX, IDC_ED_CALCPREF, m_ctrEdPref);
 }
 
 void CTabCalc::OnOK()
@@ -99,6 +98,7 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
     if (!checkMask()) {
         if (!prevError) {
             MessageBeep(MB_ICONEXCLAMATION);
+            m_ctrEdPref.SetWindowTextW(L"!");
             prevError = true;
         }
     } else {
