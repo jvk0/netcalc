@@ -15,7 +15,13 @@ public:
     #endif
 
 protected:
+    CIPAddressCtrl m_ctrIPCalc;
+    CIPAddressCtrl m_ctrIPMask;
+
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+    virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
+public:
+    
 };

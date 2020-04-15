@@ -1,5 +1,7 @@
 #include "pch.h"
 
+#include "resource.h"
+
 #include "CNetCalcApp.h"
 #include "CTabCalc.h"
 
@@ -21,6 +23,18 @@ CTabCalc::~CTabCalc()
 void CTabCalc::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_IP_IPCALC, m_ctrIPCalc);
+    DDX_Control(pDX, IDC_IP_IPMASK, m_ctrIPMask);
+}
+
+BOOL CTabCalc::OnInitDialog()
+{
+    CDialogEx::OnInitDialog();
+
+    m_ctrIPCalc.SetAddress(192, 168, 0, 1);
+    m_ctrIPMask.SetAddress(255, 255, 255, 0);
+
+    return TRUE;
 }
 
 
