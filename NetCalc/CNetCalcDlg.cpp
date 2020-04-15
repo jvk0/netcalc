@@ -211,4 +211,3 @@ void CNetCalcDlg::OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult)
             m_tabMask.ShowWindow(SW_HIDE);
     }
 }
-
