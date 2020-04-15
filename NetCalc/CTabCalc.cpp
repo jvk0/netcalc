@@ -43,7 +43,6 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_IP_CALCIP, m_ctrIPAddr);
     DDX_Control(pDX, IDC_IP_CALCMASK, m_ctrIPMask);
     DDX_Control(pDX, IDC_ST_MASK, m_ctrSTMask);
-    DDX_Control(pDX, IDC_ED_CALCPREF, m_ctrEdPref);
     DDX_Text(pDX, IDC_ED_CALCPREF, m_valEdPref);
     DDX_Control(pDX, IDC_SPIN_CALCPREF, m_ctrSpinPref);
     DDX_IPAddress(pDX, IDC_IP_CALCMASK, m_valIPmask);
@@ -73,11 +72,8 @@ BOOL CTabCalc::OnInitDialog()
 
     checkMask();
 
-    m_ctrEdPref.SetLimitText(2);
-    m_valEdPref = L"24"; // 255.255.255.0
     m_ctrSpinPref.SetRange(1, 32);
-
-    UpdateData(FALSE);
+    m_ctrSpinPref.SetPos(24); // 255.255.255.0
 
     return TRUE;
 }
@@ -86,6 +82,7 @@ BOOL CTabCalc::OnInitDialog()
 BEGIN_MESSAGE_MAP(CTabCalc, CDialogEx)
     #pragma warning(disable: 26454)
     ON_NOTIFY(IPN_FIELDCHANGED, IDC_IP_CALCMASK, &CTabCalc::OnIPFieldChangedCalcMask)
+    ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_CALCPREF, &CTabCalc::OnDeltaPosSpinCalcPref)
     #pragma warning(default: 26454)
 END_MESSAGE_MAP()
 
@@ -97,7 +94,7 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
 {
     static bool prevError = false;
 
-    LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
+    // LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
 
     if (!checkMask()) {
         if (!prevError) {
@@ -110,5 +107,18 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
         prevError = false;
     }
 
+    *pResult = 0;
+}
+
+void CTabCalc::OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
+    
+    int newNum = (pNMUpDown->iPos + pNMUpDown->iDelta);
+    
+    m_valIPmask = IP4Calc::prefix2mask(newNum);
+
+    UpdateData(FALSE);
+        
     *pResult = 0;
 }

@@ -30,8 +30,8 @@ protected:
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
 public:
-    CEdit m_ctrEdPref;
     CString m_valEdPref;
     CSpinButtonCtrl m_ctrSpinPref;
     DWORD m_valIPmask;
+    afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
 };
