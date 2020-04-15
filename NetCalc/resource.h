@@ -11,8 +11,8 @@
 #define IDD_OLE_PL_MASK                 107
 #define IDR_MAINFRAME                   128
 #define IDC_TAB_MAIN                    1001
-#define IDC_IP_IPCALC                   1004
-#define IDC_IP_IPMASK                   1005
+#define IDC_IP_CALCIP                   1004
+#define IDC_IP_CALCMASK                  1005
 
 // Next default values for new objects
 // 

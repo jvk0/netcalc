@@ -15,13 +15,17 @@ public:
     #endif
 
 protected:
-    CIPAddressCtrl m_ctrIPCalc;
+    CIPAddressCtrl m_ctrIPAddr;
     CIPAddressCtrl m_ctrIPMask;
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+    virtual void OnOK() override;
+    virtual void OnCancel() override;
 
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
 public:
     
+    afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
 };
