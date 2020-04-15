@@ -202,14 +202,4 @@ IP4SubnetsVect calcSubnets(IP4Addr baseNet, const HostsVect& hosts)
     return ret;
 }
 
-void octet2BinStr(Octet oct, char* str)
-{
-    for (int i = (OCTSTR_SIZE - 2); i >= 0; i--) {
-        str[i] = (oct & 1) + '0';
-        oct >>= 1;
-    }
-
-    str[OCTSTR_SIZE - 1] = '\0';
-}
-
 } // namespace IP4Calc

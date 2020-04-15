@@ -38,6 +38,4 @@ int ceilHosts(int hosts);
 int sumHostReq(const HostsVect& hosts);
 IP4SubnetsVect calcSubnets(IP4Addr net, const HostsVect& hosts);
 
-void octet2BinStr(Octet oct, char* str);
-
 } // namespace IP4Calc
