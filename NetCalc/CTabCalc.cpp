@@ -22,11 +22,26 @@ CTabCalc::~CTabCalc()
 {
 }
 
+bool CTabCalc::checkMask()
+{
+    DWORD mask;
+    m_ctrIPMask.GetAddress(mask);
+
+    if (!IP4Calc::isMaskValid(mask)) {
+        m_ctrSTMask.SetWindowTextW(L"Maska nie je platná!");
+        return false;
+    } else {
+        m_ctrSTMask.SetWindowTextW(L"Maska je platná :)");
+        return true;
+    }
+}
+
 void CTabCalc::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_IP_CALCIP, m_ctrIPAddr);
     DDX_Control(pDX, IDC_IP_CALCMASK, m_ctrIPMask);
+    DDX_Control(pDX, IDC_ST_MASK, m_ctrSTMask);
 }
 
 void CTabCalc::OnOK()
@@ -51,6 +66,8 @@ BOOL CTabCalc::OnInitDialog()
     m_ctrIPMask.SetAddress(255, 255, 255, 0);
     m_ctrIPMask.SetFieldRange(0, 1, 255);
 
+    checkMask();
+
     return TRUE;
 }
 
@@ -69,13 +86,7 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
 {
     LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
     
-    DWORD mask;
-    m_ctrIPMask.GetAddress(mask);
-
-    if (!IP4Calc::isMaskValid(mask)) {
-        TRACE(L"!!!\n");
-    }
-    
+    checkMask();
 
     *pResult = 0;
 }

@@ -18,6 +18,8 @@ protected:
     CIPAddressCtrl m_ctrIPAddr;
     CIPAddressCtrl m_ctrIPMask;
 
+    bool checkMask();
+
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     virtual void OnOK() override;
@@ -28,4 +30,5 @@ protected:
 public:
     
     afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
+    CStatic m_ctrSTMask;
 };
