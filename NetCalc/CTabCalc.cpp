@@ -15,6 +15,7 @@ IMPLEMENT_DYNAMIC(CTabCalc, CDialogEx)
 CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_CALC, pParent)
     , m_valEdPref(_T(""))
+    , m_valIPmask(0)
 {
 
 }
@@ -25,10 +26,9 @@ CTabCalc::~CTabCalc()
 
 bool CTabCalc::checkMask()
 {
-    DWORD mask;
-    m_ctrIPMask.GetAddress(mask);
+    UpdateData(TRUE);
 
-    if (!IP4Calc::isMaskValid(mask)) {
+    if (!IP4Calc::isMaskValid(m_valIPmask)) {
         m_ctrSTMask.SetWindowTextW(L"Maska nie je platná!");
         return false;
     } else {
@@ -46,6 +46,7 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_ED_CALCPREF, m_ctrEdPref);
     DDX_Text(pDX, IDC_ED_CALCPREF, m_valEdPref);
     DDX_Control(pDX, IDC_SPIN_CALCPREF, m_ctrSpinPref);
+    DDX_IPAddress(pDX, IDC_IP_CALCMASK, m_valIPmask);
 }
 
 void CTabCalc::OnOK()
@@ -104,6 +105,8 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
             prevError = true;
         }
     } else {
+        // UpdateData(TRUE) was called in checkMask()
+        m_ctrSpinPref.SetPos(IP4Calc::mask2prefix(m_valIPmask));
         prevError = false;
     }
 

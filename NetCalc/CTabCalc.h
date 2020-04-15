@@ -33,4 +33,5 @@ public:
     CEdit m_ctrEdPref;
     CString m_valEdPref;
     CSpinButtonCtrl m_ctrSpinPref;
+    DWORD m_valIPmask;
 };
