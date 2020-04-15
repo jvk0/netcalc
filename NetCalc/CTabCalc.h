@@ -20,9 +20,11 @@ protected:
     CStatic         m_ctrSTMask;
     CSpinButtonCtrl m_ctrSpinPref;
     CEdit           m_ctrEdPref;
-
+    CListCtrl       m_ctrListCalc;
+    
     DWORD m_valIPmask;
 
+    void initList();
     bool checkMask();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -32,6 +34,7 @@ protected:
 
     afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnBntClickedCalc();
     virtual BOOL OnInitDialog() override;
-    DECLARE_MESSAGE_MAP()   
+    DECLARE_MESSAGE_MAP()     
 };

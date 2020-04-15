@@ -23,6 +23,13 @@ CTabCalc::~CTabCalc()
 {
 }
 
+void CTabCalc::initList()
+{
+    m_ctrListCalc.InsertColumn(0, L"", LVCFMT_CENTER, 100);
+    m_ctrListCalc.InsertColumn(1, L"Decimálna reprezentácia", LVCFMT_CENTER, 200);
+    m_ctrListCalc.InsertColumn(2, L"Binárna reprezentácia", LVCFMT_CENTER, 300);
+}
+
 bool CTabCalc::checkMask()
 {
     UpdateData(TRUE);
@@ -45,6 +52,7 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_SPIN_CALCPREF, m_ctrSpinPref);
     DDX_IPAddress(pDX, IDC_IP_CALCMASK, m_valIPmask);
     DDX_Control(pDX, IDC_ED_CALCPREF, m_ctrEdPref);
+    DDX_Control(pDX, IDC_LIST_CALC, m_ctrListCalc);
 }
 
 void CTabCalc::OnOK()
@@ -74,6 +82,8 @@ BOOL CTabCalc::OnInitDialog()
     m_ctrSpinPref.SetRange(1, 32);
     m_ctrSpinPref.SetPos(24); // 255.255.255.0
 
+    initList();
+    
     return TRUE;
 }
 
@@ -83,6 +93,7 @@ BEGIN_MESSAGE_MAP(CTabCalc, CDialogEx)
     ON_NOTIFY(IPN_FIELDCHANGED, IDC_IP_CALCMASK, &CTabCalc::OnIPFieldChangedCalcMask)
     ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_CALCPREF, &CTabCalc::OnDeltaPosSpinCalcPref)
     #pragma warning(default: 26454)
+    ON_BN_CLICKED(IDC_BTN_CALC, &CTabCalc::OnBntClickedCalc)
 END_MESSAGE_MAP()
 
 
@@ -124,4 +135,9 @@ void CTabCalc::OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult)
     UpdateData(FALSE);
         
     *pResult = 0;
+}
+
+void CTabCalc::OnBntClickedCalc()
+{
+    // TODO: Add your control notification handler code here
 }
