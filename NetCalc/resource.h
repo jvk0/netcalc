@@ -20,6 +20,16 @@
 #define IDC_TAB0_ST_MASK                1011
 #define IDC_TAB0_ST_PREFIX              1012
 #define IDC_TAB0_BTN_CALC               1014
+#define IDC_TAB0_ED_OADDR               1015
+#define IDC_TAB0_ED_OMASK               1016
+#define IDC_TAB0_ED_OWILD               1017
+#define IDC_TAB0_ED_ONET                1018
+#define IDC_TAB0_ED_OBRD                1019
+#define IDC_TAB0_ED_OMIN                1020
+#define IDC_TAB0_ED_OMAX                1021
+#define IDC_EDIT8                       1022
+#define IDC_TAB0_ED_ONUM                1022
+#define IDC_TAB0_GB_OUT                 1023
 
 // Next default values for new objects
 // 
@@ -27,7 +37,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1015
+#define _APS_NEXT_CONTROL_VALUE         1024
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

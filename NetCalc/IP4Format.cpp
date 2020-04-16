@@ -2,8 +2,8 @@
 
 #include "IP4Format.h"
 
-namespace IP4format {
-CString IP4format::addr2Str(IP4Calc::IP4Addr addr)
+namespace IP4Format {
+CString addr2Str(IP4Calc::IP4Addr addr)
 {
     using namespace IP4Calc;
 
@@ -14,7 +14,7 @@ CString IP4format::addr2Str(IP4Calc::IP4Addr addr)
     return ret;
 }
 
-CString IP4format::addr2BinStr(IP4Calc::IP4Addr addr)
+CString addr2BinStr(IP4Calc::IP4Addr addr)
 {
     CString ret; // :{
     
@@ -30,4 +30,4 @@ CString IP4format::addr2BinStr(IP4Calc::IP4Addr addr)
     return ret.MakeReverse(); // :{
 }
 
-} // namespace IP4format
+} // namespace IP4Format

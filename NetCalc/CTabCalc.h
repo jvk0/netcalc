@@ -21,9 +21,21 @@ protected:
     CSpinButtonCtrl m_ctrSpinPrefix;
     CEdit           m_ctrEdPrefix;
    
-    DWORD m_valIPmask;
+    DWORD m_valIPAddr;
+    DWORD m_valIPMask;
+
+    // Output control variables (Dec)
+    CEdit m_ctrEdOutAddr;
+    CEdit m_ctrEdOutMask;
+    CEdit m_ctrEdOutWild;
+    CEdit m_ctrEdOutNet;
+    CEdit m_ctrEdOutBrd;
+    CEdit m_ctrEdOutMin;
+    CEdit m_ctrEdOutMax;
+    CEdit m_ctrEdOutNum;
 
     bool checkMask();
+    void clearOutput();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
