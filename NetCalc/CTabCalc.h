@@ -11,15 +11,15 @@ public:
 
     // Dialog Data
     #ifdef AFX_DESIGN_TIME
-        enum { IDD = IDD_OLE_PL_CALC };
+        enum { IDD = IDD_OLE_PL_TAB0 };
     #endif
 
 protected:
     CIPAddressCtrl  m_ctrIPAddr;
     CIPAddressCtrl  m_ctrIPMask;
-    CStatic         m_ctrSTMask;
-    CSpinButtonCtrl m_ctrSpinPref;
-    CEdit           m_ctrEdPref;
+    CStatic         m_ctrSTextMaskValid;
+    CSpinButtonCtrl m_ctrSpinPrefix;
+    CEdit           m_ctrEdPrefix;
     CListCtrl       m_ctrListCalc;
     
     DWORD m_valIPmask;

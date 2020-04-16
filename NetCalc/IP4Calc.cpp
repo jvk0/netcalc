@@ -82,7 +82,7 @@ const char* addrTypeStr(IP4Addr addr)
     }
 }
 
-IP4Addr prefix2mask(IP4Prefix prefix)
+IP4Addr prefix2Mask(IP4Prefix prefix)
 {
     IP4Addr mask = 0;
 
@@ -92,7 +92,7 @@ IP4Addr prefix2mask(IP4Prefix prefix)
     return mask;
 }
 
-IP4Prefix mask2prefix(IP4Addr mask)
+IP4Prefix mask2Prefix(IP4Addr mask)
 {
     IP4Prefix prefix = 0;
 

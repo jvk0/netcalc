@@ -62,9 +62,9 @@ void CNetCalcDlg::OnCancel()
 
 void CNetCalcDlg::initTabs()
 {  
-    m_tabCalc.Create(IDD_OLE_PL_CALC, &m_ctrTabMain);
-    m_tabSub.Create(IDD_OLE_PL_SUB, &m_ctrTabMain);
-    m_tabMask.Create(IDD_OLE_PL_MASK, &m_ctrTabMain);
+    m_tabCalc.Create(IDD_OLE_PL_TAB0, &m_ctrTabMain);
+    m_tabSub.Create(IDD_OLE_PL_TAB1, &m_ctrTabMain);
+    m_tabMask.Create(IDD_OLE_PL_TAB2, &m_ctrTabMain);
 
     TCITEM tab0;
     tab0.mask = TCIF_TEXT | TCIF_PARAM;

@@ -24,8 +24,8 @@ Octet fourthOctet(IP4Addr addr);
 char addrClass(Octet firstOctet);
 const char* addrTypeStr(IP4Addr addr);
 
-IP4Addr prefix2mask(IP4Prefix prefix);
-IP4Prefix mask2prefix(IP4Addr mask);
+IP4Addr prefix2Mask(IP4Prefix prefix);
+IP4Prefix mask2Prefix(IP4Addr mask);
 bool isMaskValid(IP4Addr mask);
 int numHostsAddr(IP4Prefix prefix);
 

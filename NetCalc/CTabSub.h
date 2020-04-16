@@ -11,7 +11,7 @@ public:
 
     // Dialog Data
     #ifdef AFX_DESIGN_TIME
-        enum { IDD = IDD_OLE_PL_SUB };
+        enum { IDD = IDD_OLE_PL_TAB1 };
     #endif
 
 protected:

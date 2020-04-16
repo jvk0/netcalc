@@ -9,7 +9,7 @@
 IMPLEMENT_DYNAMIC(CTabMask, CDialogEx)
 
 CTabMask::CTabMask(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_OLE_PL_MASK, pParent)
+    : CDialogEx(IDD_OLE_PL_TAB2, pParent)
 {
 
 }

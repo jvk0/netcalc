@@ -13,7 +13,7 @@
 IMPLEMENT_DYNAMIC(CTabCalc, CDialogEx)
 
 CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_OLE_PL_CALC, pParent)
+    : CDialogEx(IDD_OLE_PL_TAB0, pParent)
     , m_valIPmask(0)
 {
 
@@ -35,10 +35,10 @@ bool CTabCalc::checkMask()
     UpdateData(TRUE);
 
     if (!IP4Calc::isMaskValid(m_valIPmask)) {
-        m_ctrSTMask.SetWindowTextW(L"Maska nie je platná!");
+        m_ctrSTextMaskValid.SetWindowTextW(L"Maska nie je platná!");
         return false;
     } else {
-        m_ctrSTMask.SetWindowTextW(L"Maska je platná :)");
+        m_ctrSTextMaskValid.SetWindowTextW(L"Maska je platná :)");
         return true;
     }
 }
@@ -46,13 +46,13 @@ bool CTabCalc::checkMask()
 void CTabCalc::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_IP_CALCIP, m_ctrIPAddr);
-    DDX_Control(pDX, IDC_IP_CALCMASK, m_ctrIPMask);
-    DDX_Control(pDX, IDC_ST_CALCISMASK, m_ctrSTMask);
-    DDX_Control(pDX, IDC_SPIN_CALCPREF, m_ctrSpinPref);
-    DDX_IPAddress(pDX, IDC_IP_CALCMASK, m_valIPmask);
-    DDX_Control(pDX, IDC_ED_CALCPREF, m_ctrEdPref);
-    DDX_Control(pDX, IDC_LIST_CALC, m_ctrListCalc);
+    DDX_Control(pDX, IDC_TAB0_IP_ADDR, m_ctrIPAddr);
+    DDX_Control(pDX, IDC_TAB0_IP_MASK, m_ctrIPMask);
+    DDX_Control(pDX, IDC_TAB0_ST_MASKVALID, m_ctrSTextMaskValid);
+    DDX_Control(pDX, IDC_TAB0_SPIN_PREFIX, m_ctrSpinPrefix);
+    DDX_IPAddress(pDX, IDC_TAB0_IP_MASK, m_valIPmask);
+    DDX_Control(pDX, IDC_TAB0_ED_PREFIX, m_ctrEdPrefix);
+    DDX_Control(pDX, IDC_TAB0_LIST_CALC, m_ctrListCalc);
 }
 
 void CTabCalc::OnOK()
@@ -79,8 +79,8 @@ BOOL CTabCalc::OnInitDialog()
 
     checkMask();
 
-    m_ctrSpinPref.SetRange(1, 32);
-    m_ctrSpinPref.SetPos(24); // 255.255.255.0
+    m_ctrSpinPrefix.SetRange(1, 32);
+    m_ctrSpinPrefix.SetPos(24); // 255.255.255.0
 
     initList();
     
@@ -90,10 +90,10 @@ BOOL CTabCalc::OnInitDialog()
 
 BEGIN_MESSAGE_MAP(CTabCalc, CDialogEx)
     #pragma warning(disable: 26454)
-    ON_NOTIFY(IPN_FIELDCHANGED, IDC_IP_CALCMASK, &CTabCalc::OnIPFieldChangedCalcMask)
-    ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_CALCPREF, &CTabCalc::OnDeltaPosSpinCalcPref)
+    ON_NOTIFY(IPN_FIELDCHANGED, IDC_TAB0_IP_MASK, &CTabCalc::OnIPFieldChangedCalcMask)
+    ON_NOTIFY(UDN_DELTAPOS, IDC_TAB0_SPIN_PREFIX, &CTabCalc::OnDeltaPosSpinCalcPref)
     #pragma warning(default: 26454)
-    ON_BN_CLICKED(IDC_BTN_CALC, &CTabCalc::OnBntClickedCalc)
+    ON_BN_CLICKED(IDC_TAB0_BTN_CALC, &CTabCalc::OnBntClickedCalc)
 END_MESSAGE_MAP()
 
 
@@ -109,12 +109,12 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
     if (!checkMask()) {
         if (!prevError) {
             MessageBeep(MB_ICONEXCLAMATION);
-            m_ctrEdPref.SetWindowTextW(L"!");
+            m_ctrEdPrefix.SetWindowTextW(L"!");
             prevError = true;
         }
     } else {
         // UpdateData(TRUE) was called in checkMask()
-        m_ctrSpinPref.SetPos(IP4Calc::mask2prefix(m_valIPmask));
+        m_ctrSpinPrefix.SetPos(IP4Calc::mask2Prefix(m_valIPmask));
         prevError = false;
     }
 
@@ -126,14 +126,16 @@ void CTabCalc::OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult)
     LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
     
     int newNum = (pNMUpDown->iPos + pNMUpDown->iDelta);
-    
-    if (newNum < 1)
-        return; // Bug fix
-    
-    m_valIPmask = IP4Calc::prefix2mask(newNum);
 
+    if (newNum < 1)
+        newNum = 1; // Bug fix
+    
+    m_valIPmask = IP4Calc::prefix2Mask(newNum);
+    
     UpdateData(FALSE);
-        
+    
+    checkMask();
+
     *pResult = 0;
 }
 

@@ -9,7 +9,7 @@
 IMPLEMENT_DYNAMIC(CTabSub, CDialogEx)
 
 CTabSub::CTabSub(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_OLE_PL_SUB, pParent)
+    : CDialogEx(IDD_OLE_PL_TAB1, pParent)
 {
 
 }
