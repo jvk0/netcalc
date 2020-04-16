@@ -24,15 +24,24 @@ protected:
     DWORD m_valIPAddr;
     DWORD m_valIPMask;
 
-    // Output control variables (Dec)
-    CEdit m_ctrEdOutAddr;
-    CEdit m_ctrEdOutMask;
-    CEdit m_ctrEdOutWild;
-    CEdit m_ctrEdOutNet;
-    CEdit m_ctrEdOutBrd;
-    CEdit m_ctrEdOutMin;
-    CEdit m_ctrEdOutMax;
-    CEdit m_ctrEdOutNum;
+    // Output variables (Dec)
+    CString m_valEdOutAddr;
+    CString m_valEdOutMask;
+    CString m_valEdOutWild;
+    CString m_valEdOutNet;
+    CString m_valEdOutBrd;
+    CString m_valEdOutMin;
+    CString m_valEdOutMax;
+    CString m_valEdOutNum;
+
+    // Output variables (Bin)
+    CString m_valEdOutBinAddr;
+    CString m_valEdOutBinMask;
+    CString m_valEdOutBinWild;
+    CString m_valEdOutBinNet;
+    CString m_valEdOutBinBrd;
+    CString m_valEdOutBinMin;
+    CString m_valEdOutBinMax;
 
     bool checkMask();
     void clearOutput();
@@ -47,20 +56,4 @@ protected:
     afx_msg void OnBntClickedCalc();
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()     
-public:
-    CString m_valEdOutAddr;
-    CString m_valEdOutMask;
-    CString m_valEdOutWild;
-    CString m_valEdOutNet;
-    CString m_valEdOutBrd;
-    CString m_valEdOutMin;
-    CString m_valEdOutMax;
-    CString m_valEdOutNum;
-    CString m_valEdOutBinAddr;
-    CString m_valEdOutBinMask;
-    CString m_valEdOutBinWild;
-    CString m_valEdOutBinNet;
-    CString m_valEdOutBinBrd;
-    CString m_valEdOutBinMin;
-    CString m_valEdOutBinMax;
 };

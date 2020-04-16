@@ -32,7 +32,6 @@ CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     , m_valEdOutBinMin(_T(""))
     , m_valEdOutBinMax(_T(""))
 {
-
 }
 
 CTabCalc::~CTabCalc()
@@ -66,14 +65,6 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TAB0_ED_PREFIX, m_ctrEdPrefix);
     DDX_IPAddress(pDX, IDC_TAB0_IP_ADDR, m_valIPAddr);
     DDX_IPAddress(pDX, IDC_TAB0_IP_MASK, m_valIPMask);
-    DDX_Control(pDX, IDC_TAB0_ED_OADDR, m_ctrEdOutAddr);
-    DDX_Control(pDX, IDC_TAB0_ED_OMASK, m_ctrEdOutMask);
-    DDX_Control(pDX, IDC_TAB0_ED_OWILD, m_ctrEdOutWild);
-    DDX_Control(pDX, IDC_TAB0_ED_ONET, m_ctrEdOutNet);
-    DDX_Control(pDX, IDC_TAB0_ED_OBRD, m_ctrEdOutBrd);
-    DDX_Control(pDX, IDC_TAB0_ED_OMIN, m_ctrEdOutMin);
-    DDX_Control(pDX, IDC_TAB0_ED_OMAX, m_ctrEdOutMax);
-    DDX_Control(pDX, IDC_TAB0_ED_ONUM, m_ctrEdOutNum);
     DDX_Text(pDX, IDC_TAB0_ED_OADDR, m_valEdOutAddr);
     DDX_Text(pDX, IDC_TAB0_ED_OMASK, m_valEdOutMask);
     DDX_Text(pDX, IDC_TAB0_ED_OWILD, m_valEdOutWild);

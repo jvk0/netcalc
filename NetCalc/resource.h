@@ -35,7 +35,6 @@
 #define IDC_TAB0_ED_OBNET               1027
 #define IDC_TAB0_ED_OBBRD               1028
 #define IDC_TAB0_ED_OBMIN               1029
-#define IDC_TAB0_ED_OBMIN2              1030
 #define IDC_TAB0_ED_OBMAX               1030
 
 // Next default values for new objects
