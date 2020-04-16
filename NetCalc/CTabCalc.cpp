@@ -23,13 +23,6 @@ CTabCalc::~CTabCalc()
 {
 }
 
-void CTabCalc::initList()
-{
-    m_ctrListCalc.InsertColumn(0, L"", LVCFMT_CENTER, 100);
-    m_ctrListCalc.InsertColumn(1, L"Decimálna reprezentácia", LVCFMT_CENTER, 200);
-    m_ctrListCalc.InsertColumn(2, L"Binárna reprezentácia", LVCFMT_CENTER, 300);
-}
-
 bool CTabCalc::checkMask()
 {
     UpdateData(TRUE);
@@ -52,7 +45,6 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TAB0_SPIN_PREFIX, m_ctrSpinPrefix);
     DDX_IPAddress(pDX, IDC_TAB0_IP_MASK, m_valIPmask);
     DDX_Control(pDX, IDC_TAB0_ED_PREFIX, m_ctrEdPrefix);
-    DDX_Control(pDX, IDC_TAB0_LIST_CALC, m_ctrListCalc);
 }
 
 void CTabCalc::OnOK()
@@ -81,8 +73,6 @@ BOOL CTabCalc::OnInitDialog()
 
     m_ctrSpinPrefix.SetRange(1, 32);
     m_ctrSpinPrefix.SetPos(24); // 255.255.255.0
-
-    initList();
     
     return TRUE;
 }

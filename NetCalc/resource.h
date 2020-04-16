@@ -19,7 +19,6 @@
 #define IDC_TAB0_ST_ADDR                1010
 #define IDC_TAB0_ST_MASK                1011
 #define IDC_TAB0_ST_PREFIX              1012
-#define IDC_TAB0_LIST_CALC              1013
 #define IDC_TAB0_BTN_CALC               1014
 
 // Next default values for new objects

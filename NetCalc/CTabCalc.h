@@ -20,11 +20,9 @@ protected:
     CStatic         m_ctrSTextMaskValid;
     CSpinButtonCtrl m_ctrSpinPrefix;
     CEdit           m_ctrEdPrefix;
-    CListCtrl       m_ctrListCalc;
-    
+   
     DWORD m_valIPmask;
 
-    void initList();
     bool checkMask();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
