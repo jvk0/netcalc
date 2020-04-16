@@ -141,6 +141,7 @@ BEGIN_MESSAGE_MAP(CTabCalc, CDialogEx)
     ON_NOTIFY(UDN_DELTAPOS, IDC_TAB0_SPIN_PREFIX, &CTabCalc::OnDeltaPosSpinCalcPref)
     #pragma warning(default: 26454)
     ON_BN_CLICKED(IDC_TAB0_BTN_CALC, &CTabCalc::OnBntClickedCalc)
+    ON_BN_CLICKED(IDC_TAB0_BTN_CLEAR, &CTabCalc::OnBntClickedClear)
 END_MESSAGE_MAP()
 
 
@@ -247,4 +248,9 @@ void CTabCalc::OnBntClickedCalc()
     m_valSTextOutInfo = tmpStr;
 
     UpdateData(FALSE);
+}
+
+void CTabCalc::OnBntClickedClear()
+{
+    clearOutput();
 }

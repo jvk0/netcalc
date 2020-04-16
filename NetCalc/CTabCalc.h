@@ -57,6 +57,7 @@ protected:
     afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedCalc();
+    afx_msg void OnBntClickedClear();
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()       
 };
