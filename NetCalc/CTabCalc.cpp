@@ -16,7 +16,21 @@ CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB0, pParent)
     , m_valIPAddr(0)
     , m_valIPMask(0)
-    
+    , m_valEdOutAddr(_T(""))
+    , m_valEdOutMask(_T(""))
+    , m_valEdOutWild(_T(""))
+    , m_valEdOutNet(_T(""))
+    , m_valEdOutBrd(_T(""))
+    , m_valEdOutMin(_T(""))
+    , m_valEdOutMax(_T(""))
+    , m_valEdOutNum(_T(""))
+    , m_valEdOutBinAddr(_T(""))
+    , m_valEdOutBinMask(_T(""))
+    , m_valEdOutBinWild(_T(""))
+    , m_valEdOutBinNet(_T(""))
+    , m_valEdOutBinBrd(_T(""))
+    , m_valEdOutBinMin(_T(""))
+    , m_valEdOutBinMax(_T(""))
 {
 
 }
@@ -49,8 +63,9 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TAB0_IP_MASK, m_ctrIPMask);
     DDX_Control(pDX, IDC_TAB0_ST_MASKVALID, m_ctrSTextMaskValid);
     DDX_Control(pDX, IDC_TAB0_SPIN_PREFIX, m_ctrSpinPrefix);
-    DDX_IPAddress(pDX, IDC_TAB0_IP_MASK, m_valIPMask);
     DDX_Control(pDX, IDC_TAB0_ED_PREFIX, m_ctrEdPrefix);
+    DDX_IPAddress(pDX, IDC_TAB0_IP_ADDR, m_valIPAddr);
+    DDX_IPAddress(pDX, IDC_TAB0_IP_MASK, m_valIPMask);
     DDX_Control(pDX, IDC_TAB0_ED_OADDR, m_ctrEdOutAddr);
     DDX_Control(pDX, IDC_TAB0_ED_OMASK, m_ctrEdOutMask);
     DDX_Control(pDX, IDC_TAB0_ED_OWILD, m_ctrEdOutWild);
@@ -59,7 +74,21 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TAB0_ED_OMIN, m_ctrEdOutMin);
     DDX_Control(pDX, IDC_TAB0_ED_OMAX, m_ctrEdOutMax);
     DDX_Control(pDX, IDC_TAB0_ED_ONUM, m_ctrEdOutNum);
-    DDX_IPAddress(pDX, IDC_TAB0_IP_ADDR, m_valIPAddr);
+    DDX_Text(pDX, IDC_TAB0_ED_OADDR, m_valEdOutAddr);
+    DDX_Text(pDX, IDC_TAB0_ED_OMASK, m_valEdOutMask);
+    DDX_Text(pDX, IDC_TAB0_ED_OWILD, m_valEdOutWild);
+    DDX_Text(pDX, IDC_TAB0_ED_ONET, m_valEdOutNet);
+    DDX_Text(pDX, IDC_TAB0_ED_OBRD, m_valEdOutBrd);
+    DDX_Text(pDX, IDC_TAB0_ED_OMIN, m_valEdOutMin);
+    DDX_Text(pDX, IDC_TAB0_ED_OMAX, m_valEdOutMax);
+    DDX_Text(pDX, IDC_TAB0_ED_ONUM, m_valEdOutNum);
+    DDX_Text(pDX, IDC_TAB0_ED_OBADDR, m_valEdOutBinAddr);
+    DDX_Text(pDX, IDC_TAB0_ED_OBMASK, m_valEdOutBinMask);
+    DDX_Text(pDX, IDC_TAB0_ED_OBWILD, m_valEdOutBinWild);
+    DDX_Text(pDX, IDC_TAB0_ED_OBNET, m_valEdOutBinNet);
+    DDX_Text(pDX, IDC_TAB0_ED_OBBRD, m_valEdOutBinBrd);
+    DDX_Text(pDX, IDC_TAB0_ED_OBMIN, m_valEdOutBinMin);
+    DDX_Text(pDX, IDC_TAB0_ED_OBMAX, m_valEdOutBinMax);
 }
 
 void CTabCalc::OnOK()
@@ -153,33 +182,47 @@ void CTabCalc::OnBntClickedCalc()
     using namespace IP4Format;
 
     CString tmpStr;
+    IP4Addr tmpAddr;
 
     int prefix = m_ctrSpinPrefix.GetPos();
 
-    // Addr
-    m_ctrEdOutAddr.SetWindowTextW(addr2Str(m_valIPAddr));
-
+    // Addr.
+    m_valEdOutAddr    = addr2Str(m_valIPAddr);
+    m_valEdOutBinAddr = addr2BinStr(m_valIPAddr);
+    
     // Mask and prefix lenght
     tmpStr.Format(L"%s --> /%d", addr2Str(m_valIPMask), prefix);
-    m_ctrEdOutMask.SetWindowTextW(tmpStr);
-
+    m_valEdOutMask    = tmpStr;
+    m_valEdOutBinMask = addr2BinStr(m_valIPMask);
+    
     // Wildcard
-    m_ctrEdOutWild.SetWindowTextW(addr2Str(~m_valIPMask));
+    m_valEdOutWild    = addr2Str(~m_valIPMask);
+    m_valEdOutBinWild = addr2BinStr(~m_valIPMask);
 
-    // Network addr
-    tmpStr.Format(L"%s/%d", addr2Str(netAddr(m_valIPAddr, m_valIPMask)), prefix);
-    m_ctrEdOutNet.SetWindowTextW(tmpStr);
-
-    // Broadcast addr
-    m_ctrEdOutBrd.SetWindowTextW(addr2Str(brdAddr(m_valIPAddr, m_valIPMask)));
+    // Network addr.
+    tmpAddr           = netAddr(m_valIPAddr, m_valIPMask);
+    tmpStr.Format(L"%s/%d", addr2Str(tmpAddr), prefix);
+    m_valEdOutNet     = tmpStr;
+    m_valEdOutBinNet  = addr2BinStr(tmpAddr);
+    
+    // Broadcast addr.
+    tmpAddr           = brdAddr(m_valIPAddr, m_valIPMask);
+    m_valEdOutBrd     = addr2Str(tmpAddr);
+    m_valEdOutBinBrd  = addr2BinStr(tmpAddr);
 
     // Min. host
-    m_ctrEdOutMin.SetWindowTextW(addr2Str(firstAddr(m_valIPAddr, m_valIPMask)));
+    tmpAddr           = firstAddr(m_valIPAddr, m_valIPMask);
+    m_valEdOutMin     = addr2Str(tmpAddr);
+    m_valEdOutBinMin  = addr2BinStr(tmpAddr);
 
     // Max. host
-    m_ctrEdOutMax.SetWindowTextW(addr2Str(lastAddr(m_valIPAddr, m_valIPMask)));
-
+    tmpAddr           = lastAddr(m_valIPAddr, m_valIPMask);
+    m_valEdOutMax     = addr2Str(tmpAddr);
+    m_valEdOutBinMax  = addr2BinStr(tmpAddr);
+    
     // Num. of hosts
     tmpStr.Format(L"%d", numHostsAddr(prefix));
-    m_ctrEdOutNum.SetWindowTextW(tmpStr);
+    m_valEdOutNum     = tmpStr;
+
+    UpdateData(FALSE);
 }

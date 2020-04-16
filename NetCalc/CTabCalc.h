@@ -47,4 +47,20 @@ protected:
     afx_msg void OnBntClickedCalc();
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()     
+public:
+    CString m_valEdOutAddr;
+    CString m_valEdOutMask;
+    CString m_valEdOutWild;
+    CString m_valEdOutNet;
+    CString m_valEdOutBrd;
+    CString m_valEdOutMin;
+    CString m_valEdOutMax;
+    CString m_valEdOutNum;
+    CString m_valEdOutBinAddr;
+    CString m_valEdOutBinMask;
+    CString m_valEdOutBinWild;
+    CString m_valEdOutBinNet;
+    CString m_valEdOutBinBrd;
+    CString m_valEdOutBinMin;
+    CString m_valEdOutBinMax;
 };

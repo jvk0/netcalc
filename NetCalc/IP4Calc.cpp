@@ -38,15 +38,17 @@ Octet fourthOctet(IP4Addr addr)
     return (addr & 0xFF);
 }
 
-char addrClass(Octet firstOctet)
+char addrClass(IP4Addr addr)
 {
-    if (firstOctet >= 0 && firstOctet <= 127)
+    Octet first = firstOctet(addr);
+
+    if (first >= 0 && first <= 127)
         return 'A';
-    else if (firstOctet >= 128 && firstOctet <= 191)
+    else if (first >= 128 && first <= 191)
         return 'B';
-    else if (firstOctet >= 192 && firstOctet <= 223)
+    else if (first >= 192 && first <= 223)
         return 'C';
-    else if (firstOctet >= 224 && firstOctet <= 239)
+    else if (first >= 224 && first <= 239)
         return 'D';
     else
         return 'E';

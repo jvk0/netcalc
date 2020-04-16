@@ -21,7 +21,7 @@ Octet secondOctet(IP4Addr addr);
 Octet thirdOctet(IP4Addr addr);
 Octet fourthOctet(IP4Addr addr);
 
-char addrClass(Octet firstOctet);
+char addrClass(IP4Addr addr);
 const char* addrTypeStr(IP4Addr addr);
 
 IP4Addr prefix2Mask(IP4Prefix prefix);
