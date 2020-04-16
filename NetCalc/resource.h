@@ -36,6 +36,7 @@
 #define IDC_TAB0_ED_OBBRD               1028
 #define IDC_TAB0_ED_OBMIN               1029
 #define IDC_TAB0_ED_OBMAX               1030
+#define IDC_TAB0_ST_OINFO               1031
 
 // Next default values for new objects
 // 
@@ -43,7 +44,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1024
+#define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

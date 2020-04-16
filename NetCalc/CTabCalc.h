@@ -43,6 +43,9 @@ protected:
     CString m_valEdOutBinMin;
     CString m_valEdOutBinMax;
 
+    // Info string variable
+    CString m_valSTextOutInfo;
+
     bool checkMask();
     void clearOutput();
 
@@ -55,5 +58,5 @@ protected:
     afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedCalc();
     virtual BOOL OnInitDialog() override;
-    DECLARE_MESSAGE_MAP()     
+    DECLARE_MESSAGE_MAP()       
 };

@@ -14,23 +14,24 @@ IMPLEMENT_DYNAMIC(CTabCalc, CDialogEx)
 
 CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB0, pParent)
-    , m_valIPAddr(0)
-    , m_valIPMask(0)
-    , m_valEdOutAddr(_T(""))
-    , m_valEdOutMask(_T(""))
-    , m_valEdOutWild(_T(""))
-    , m_valEdOutNet(_T(""))
-    , m_valEdOutBrd(_T(""))
-    , m_valEdOutMin(_T(""))
-    , m_valEdOutMax(_T(""))
-    , m_valEdOutNum(_T(""))
-    , m_valEdOutBinAddr(_T(""))
-    , m_valEdOutBinMask(_T(""))
-    , m_valEdOutBinWild(_T(""))
-    , m_valEdOutBinNet(_T(""))
-    , m_valEdOutBinBrd(_T(""))
-    , m_valEdOutBinMin(_T(""))
-    , m_valEdOutBinMax(_T(""))
+    ,m_valIPAddr(0)
+    ,m_valIPMask(0)
+    ,m_valEdOutAddr(_T(""))
+    ,m_valEdOutMask(_T(""))
+    ,m_valEdOutWild(_T(""))
+    ,m_valEdOutNet(_T(""))
+    ,m_valEdOutBrd(_T(""))
+    ,m_valEdOutMin(_T(""))
+    ,m_valEdOutMax(_T(""))
+    ,m_valEdOutNum(_T(""))
+    ,m_valEdOutBinAddr(_T(""))
+    ,m_valEdOutBinMask(_T(""))
+    ,m_valEdOutBinWild(_T(""))
+    ,m_valEdOutBinNet(_T(""))
+    ,m_valEdOutBinBrd(_T(""))
+    ,m_valEdOutBinMin(_T(""))
+    ,m_valEdOutBinMax(_T(""))
+    ,m_valSTextOutInfo(_T("Info:"))
 {
 }
 
@@ -53,6 +54,26 @@ bool CTabCalc::checkMask()
 
 void CTabCalc::clearOutput()
 {
+    m_valEdOutAddr = L"";
+    m_valEdOutMask = L"";
+    m_valEdOutWild = L"";
+    m_valEdOutNet  = L"";
+    m_valEdOutBrd  = L"";
+    m_valEdOutMin  = L"";
+    m_valEdOutMax  = L"";
+    m_valEdOutNum  = L"";
+
+    m_valEdOutBinAddr = L"";
+    m_valEdOutBinMask = L"";
+    m_valEdOutBinWild = L"";
+    m_valEdOutBinNet  = L"";
+    m_valEdOutBinBrd  = L"";
+    m_valEdOutBinMin  = L"";
+    m_valEdOutBinMax  = L"";
+
+    m_valSTextOutInfo = L"Info:";
+
+    UpdateData(FALSE);
 }
 
 void CTabCalc::DoDataExchange(CDataExchange* pDX)
@@ -80,6 +101,7 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_TAB0_ED_OBBRD, m_valEdOutBinBrd);
     DDX_Text(pDX, IDC_TAB0_ED_OBMIN, m_valEdOutBinMin);
     DDX_Text(pDX, IDC_TAB0_ED_OBMAX, m_valEdOutBinMax);
+    DDX_Text(pDX, IDC_TAB0_ST_OINFO, m_valSTextOutInfo);
 }
 
 void CTabCalc::OnOK()
@@ -166,9 +188,12 @@ void CTabCalc::OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CTabCalc::OnBntClickedCalc()
 {
-    if (!checkMask()) // UpdateData(TRUE) was called in checkMask()
+    if (!checkMask()) { // UpdateData(TRUE) was called in checkMask()
+        clearOutput();
+        MessageBox(L"Zadajte platnú masku siete!", L"Neplatná maska", MB_OK | MB_ICONERROR);
         return;
-    
+    } 
+
     using namespace IP4Calc;
     using namespace IP4Format;
 
