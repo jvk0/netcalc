@@ -6,7 +6,7 @@
 #include "CTabCalc.h"
 
 #include "IP4Calc.h"
-#include "IP4Format.h"
+#include "IP4String.h"
 
 // CTabCalc dialog
 
@@ -31,7 +31,7 @@ CTabCalc::CTabCalc(CWnd* pParent /*=nullptr*/)
     ,m_valEdOutBinBrd(_T(""))
     ,m_valEdOutBinMin(_T(""))
     ,m_valEdOutBinMax(_T(""))
-    ,m_valSTextOutInfo(_T("Info:"))
+    ,m_valSTextOutInfo(_T(""))
 {
 }
 
@@ -71,7 +71,7 @@ void CTabCalc::clearOutput()
     m_valEdOutBinMin  = L"";
     m_valEdOutBinMax  = L"";
 
-    m_valSTextOutInfo = L"Info:";
+    m_valSTextOutInfo = L"";
 
     UpdateData(FALSE);
 }
@@ -195,7 +195,7 @@ void CTabCalc::OnBntClickedCalc()
     } 
 
     using namespace IP4Calc;
-    using namespace IP4Format;
+    using namespace IP4String;
 
     CString tmpStr;
     IP4Addr tmpAddr;
@@ -239,6 +239,12 @@ void CTabCalc::OnBntClickedCalc()
     // Num. of hosts
     tmpStr.Format(L"%d", numHostsAddr(prefix));
     m_valEdOutNum     = tmpStr;
+
+    // Info string
+    LPCWSTR addrType  = addrTypeStr(m_valIPAddr);
+    LPCWSTR strFmt    = addrType ? L"Class: %c - %s" : L"Class: %c";
+    tmpStr.Format(strFmt, addrClass(m_valIPAddr), addrType);
+    m_valSTextOutInfo = tmpStr;
 
     UpdateData(FALSE);
 }

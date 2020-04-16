@@ -42,10 +42,10 @@
     <ClInclude Include="CNetCalcDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IP4Format.h">
+    <ClInclude Include="NetCalc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NetCalc.h">
+    <ClInclude Include="IP4String.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,10 +68,10 @@
     <ClCompile Include="CNetCalcDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IP4Format.cpp">
+    <ClCompile Include="NetCalc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NetCalc.cpp">
+    <ClCompile Include="IP4String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
