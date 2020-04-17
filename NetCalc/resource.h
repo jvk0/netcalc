@@ -38,7 +38,6 @@
 #define IDC_TAB0_ED_OBMAX               1030
 #define IDC_TAB0_ST_OINFO               1031
 #define IDC_TAB0_BTN_CLEAR              1032
-#define IDC_TAT1_IP_BASE                1033
 #define IDC_TAB1_IP_BASE                1033
 #define IDC_TAB1_ST_PREFIX              1034
 #define IDC_TAB1_ED_PREFIX              1035

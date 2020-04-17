@@ -79,6 +79,7 @@ BOOL CTabSub::OnInitDialog()
 BEGIN_MESSAGE_MAP(CTabSub, CDialogEx)
     #pragma warning(disable: 26454)
     ON_NOTIFY(UDN_DELTAPOS, IDC_TAB1_SPIN_PREFIX, &CTabSub::OnDeltaPosSpinPrefix)
+    ON_NOTIFY(IPN_FIELDCHANGED, IDC_TAB1_IP_BASE, &CTabSub::OnIPFieldChangedIPBase)
     #pragma warning(default: 26454)
 END_MESSAGE_MAP()
 
@@ -95,6 +96,15 @@ void CTabSub::OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult)
     if (m_calcPrefix < 1)
         m_calcPrefix = 1; // Bug fix
 
+    updateInfoStr();
+
+    *pResult = 0;
+}
+
+void CTabSub::OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
+    
     updateInfoStr();
 
     *pResult = 0;
