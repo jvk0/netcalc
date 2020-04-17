@@ -15,7 +15,16 @@ public:
     #endif
 
 protected:
+    CSpinButtonCtrl m_ctrSpinPrefix;
+    
+    DWORD   m_valIPBaseNet;
+    CString m_valSTextInfo;
+    
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+    virtual void OnOK() override;
+    virtual void OnCancel() override;
+
+    virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
 };
