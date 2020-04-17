@@ -122,14 +122,14 @@ BOOL CTabCalc::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
 
-    m_ctrIPAddr.SetAddress(192, 168, 1, 0);
-    m_ctrIPMask.SetAddress(255, 255, 255, 0); // Valid mask
+    m_ctrIPAddr.SetAddress(192, 168, 0, 1);
+    m_ctrIPMask.SetAddress(255, 255, 0, 0); // Valid mask
     m_ctrIPMask.SetFieldRange(0, 1, 255);
 
     checkMask();
 
     m_ctrSpinPrefix.SetRange(1, 32);
-    m_ctrSpinPrefix.SetPos(24); // 255.255.255.0
+    m_ctrSpinPrefix.SetPos(16); // 255.255.0.0
     
     return TRUE;
 }
