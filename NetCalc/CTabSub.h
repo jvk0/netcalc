@@ -30,4 +30,6 @@ protected:
 
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
+public:
+    afx_msg void OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult);
 };

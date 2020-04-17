@@ -74,7 +74,20 @@ BOOL CTabSub::OnInitDialog()
 }
 
 BEGIN_MESSAGE_MAP(CTabSub, CDialogEx)
+    #pragma warning(disable: 26454)
+    ON_NOTIFY(UDN_DELTAPOS, IDC_TAB1_SPIN_PREFIX, &CTabSub::OnDeltaPosSpinPrefix)
+    #pragma warning(default: 26454)
 END_MESSAGE_MAP()
 
 
 // CTabSub message handlers
+
+
+void CTabSub::OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
+    
+    updateInfoStr();
+
+    *pResult = 0;
+}
