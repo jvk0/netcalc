@@ -38,6 +38,13 @@
 #define IDC_TAB0_ED_OBMAX               1030
 #define IDC_TAB0_ST_OINFO               1031
 #define IDC_TAB0_BTN_CLEAR              1032
+#define IDC_TAT1_IP_BASENET             1033
+#define IDC_TAT1_IP_BASE                1033
+#define IDC_TAB1_ST_PREFIX              1034
+#define IDC_TAB1_ED_PREFIX              1035
+#define IDC_TAB1_SPIN_PREFIX            1036
+#define IDC_TAB1_GB_SPACE               1037
+#define IDC_TAB1_ST_INFO                1038
 
 // Next default values for new objects
 // 
@@ -45,7 +52,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1033
+#define _APS_NEXT_CONTROL_VALUE         1039
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
