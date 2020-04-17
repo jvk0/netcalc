@@ -13,9 +13,10 @@
 IMPLEMENT_DYNAMIC(CTabSub, CDialogEx)
 
 CTabSub::CTabSub(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_OLE_PL_TAB1, pParent)
-    ,m_valIPBaseNet(0)
-    ,m_valSTextInfo(_T(""))
+    : CDialogEx(IDD_OLE_PL_TAB1, pParent),
+    m_calcPrefix(0),
+    m_valIPBaseNet(0),
+    m_valSTextInfo(_T(""))
 {
 }
 
@@ -27,12 +28,12 @@ void CTabSub::updateInfoStr()
 {
     UpdateData(TRUE);
 
-    int prefix = m_ctrSpinPrefix.GetPos();
-    
+    DWORD mask = IP4Calc::prefix2Mask(m_calcPrefix);
+
     m_valSTextInfo.Format(L"Adresa siete: %s/%d\nPočet adries: %d",
-        IP4String::addr2Str(m_valIPBaseNet),
-        prefix, 
-        IP4Calc::numHostsAddr(prefix));
+        IP4String::addr2Str(m_valIPBaseNet & mask),
+        m_calcPrefix,
+        IP4Calc::numHostsAddr(m_calcPrefix));
 
     UpdateData(FALSE);
 }
@@ -65,9 +66,11 @@ BOOL CTabSub::OnInitDialog()
     CDialogEx::OnInitDialog();
 
     m_ctrIPBaseNet.SetAddress(192, 168, 0, 0);
+    
     m_ctrSpinPrefix.SetRange(1, 32);
     m_ctrSpinPrefix.SetPos(16); // 255.255.0.0
-
+    m_calcPrefix = 16; // Manually update prefix 
+    
     updateInfoStr();
 
     return TRUE;
@@ -87,6 +90,11 @@ void CTabSub::OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult)
 {
     LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
     
+    m_calcPrefix = (pNMUpDown->iPos + pNMUpDown->iDelta);
+
+    if (m_calcPrefix < 1)
+        m_calcPrefix = 1; // Bug fix
+
     updateInfoStr();
 
     *pResult = 0;

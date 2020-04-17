@@ -15,11 +15,13 @@ public:
     #endif
 
 protected:
+    int             m_calcPrefix;
+ 
     CIPAddressCtrl  m_ctrIPBaseNet;
     CSpinButtonCtrl m_ctrSpinPrefix;
     
-    DWORD   m_valIPBaseNet;
-    CString m_valSTextInfo;
+    DWORD           m_valIPBaseNet;
+    CString         m_valSTextInfo;
     
     void updateInfoStr();
 
