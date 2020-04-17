@@ -15,11 +15,14 @@ public:
     #endif
 
 protected:
+    CIPAddressCtrl  m_ctrIPBaseNet;
     CSpinButtonCtrl m_ctrSpinPrefix;
     
     DWORD   m_valIPBaseNet;
     CString m_valSTextInfo;
     
+    void updateInfoStr();
+
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     virtual void OnOK() override;
