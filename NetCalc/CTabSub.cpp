@@ -15,6 +15,7 @@ IMPLEMENT_DYNAMIC(CTabSub, CDialogEx)
 CTabSub::CTabSub(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB1, pParent),
     m_subnetHosts({1, 7, 254, 1023, 127, 15}),
+    m_subnetHostsSum(0),
     m_calcPrefix(0),
     m_valIPBaseNet(0),
     m_valSTextInfo(_T(""))
@@ -116,8 +117,8 @@ void CTabSub::OnBntClickedSetHosts()
 {
     CHostsDlg hostsDlg(m_subnetHosts);
 
-    if (IDOK == hostsDlg.DoModal())
-        m_subnetHosts = hostsDlg.getHostsVec();
-    else
-        MessageBox(L"!IDOK", L"DEBUG"); // REMOVE
+    if (IDOK == hostsDlg.DoModal()) {
+        m_subnetHosts    = hostsDlg.getHostsVec();
+        m_subnetHostsSum = hostsDlg.getSumHosts();
+    }
 }

@@ -17,6 +17,7 @@ public:
 
 protected:
     IP4Calc::HostsVect  m_subnetHosts;
+    int                 m_subnetHostsSum;
 
     int                 m_calcPrefix;
  
@@ -36,7 +37,6 @@ protected:
     virtual BOOL OnInitDialog() override;
     afx_msg void OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult);
-    DECLARE_MESSAGE_MAP()
-public:
     afx_msg void OnBntClickedSetHosts();
+    DECLARE_MESSAGE_MAP()
 };

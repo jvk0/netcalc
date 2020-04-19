@@ -28,6 +28,11 @@ IP4Calc::HostsVect CHostsDlg::getHostsVec()
     return m_outHosts;
 }
 
+int CHostsDlg::getSumHosts()
+{
+    return m_sumHosts;
+}
+
 void CHostsDlg::addListHostsRow(int num)
 {
     CString tmpStr;
@@ -129,14 +134,16 @@ void CHostsDlg::OnBtnClickedRemove()
 {
     int nItem = m_ctrListHosts.GetSelectionMark();
 
-    if (nItem == -1)
+    if (nItem == -1) {
+        MessageBeep(MB_ICONWARNING);
         return;
+    }
 
     std::size_t end = m_outHosts.size() - 1;
-        
-    m_outHosts.erase(m_outHosts.begin() + (end - nItem));
+    
     m_sumHosts -= IP4Calc::ceilHosts(m_outHosts[end - nItem]); // Update sum
-
+    m_outHosts.erase(m_outHosts.begin() + (end - nItem));
+    
     m_ctrListHosts.DeleteItem(nItem);
 
     updateSumText();

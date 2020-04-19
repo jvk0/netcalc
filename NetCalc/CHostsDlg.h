@@ -16,6 +16,7 @@ public:
     #endif
 
     IP4Calc::HostsVect getHostsVec();
+    int getSumHosts();
 protected:
     IP4Calc::HostsVect m_outHosts;
     int                m_sumHosts;
@@ -36,7 +37,6 @@ protected:
 
     virtual BOOL OnInitDialog() override;
     afx_msg void OnBntClickedAdd();
-    DECLARE_MESSAGE_MAP()  
-public:
     afx_msg void OnBtnClickedRemove();
+    DECLARE_MESSAGE_MAP()  
 };
