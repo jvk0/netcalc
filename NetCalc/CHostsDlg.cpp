@@ -52,8 +52,8 @@ void CHostsDlg::initListHosts()
     
     int colWidth = rect.Width() / 2;
     
-    m_ctrListHosts.InsertColumn(0, _T("Požiadavka"), LVCFMT_LEFT, colWidth);
-    m_ctrListHosts.InsertColumn(1, _T("Zaokrúhlené "), LVCFMT_LEFT, colWidth);
+    m_ctrListHosts.InsertColumn(0, _T("Požadovaný"), LVCFMT_LEFT, colWidth);
+    m_ctrListHosts.InsertColumn(1, _T("Zaokrúhlený "), LVCFMT_LEFT, colWidth);
 
     for (auto i : m_outHosts)
         addListHostsRow(i);
@@ -101,6 +101,7 @@ BOOL CHostsDlg::OnInitDialog()
 
 BEGIN_MESSAGE_MAP(CHostsDlg, CDialogEx)
     ON_BN_CLICKED(IDC_HDLG_BTN_ADD, &CHostsDlg::OnBntClickedAdd)
+    ON_BN_CLICKED(IDC_HDLG_BTN_REMOVE, &CHostsDlg::OnBtnClickedRemove)
 END_MESSAGE_MAP()
 
 
@@ -120,6 +121,23 @@ void CHostsDlg::OnBntClickedAdd()
     m_outHosts.push_back(num);
     addListHostsRow(num);
     
-    m_sumHosts += num; // Update sum
+    m_sumHosts += IP4Calc::ceilHosts(num); // Update sum
+    updateSumText();
+}
+
+void CHostsDlg::OnBtnClickedRemove()
+{
+    int nItem = m_ctrListHosts.GetSelectionMark();
+
+    if (nItem == -1)
+        return;
+
+    std::size_t end = m_outHosts.size() - 1;
+        
+    m_outHosts.erase(m_outHosts.begin() + (end - nItem));
+    m_sumHosts -= IP4Calc::ceilHosts(m_outHosts[end - nItem]); // Update sum
+
+    m_ctrListHosts.DeleteItem(nItem);
+
     updateSumText();
 }
