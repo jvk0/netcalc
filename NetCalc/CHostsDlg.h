@@ -19,6 +19,7 @@ public:
 protected:
     IP4Calc::HostsVect m_outHosts;
 
+    void addListHostsRow(int num);
     void initListHosts();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

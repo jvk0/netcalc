@@ -25,15 +25,35 @@ IP4Calc::HostsVect CHostsDlg::getHostsVec()
     return m_outHosts;
 }
 
+void CHostsDlg::addListHostsRow(int num)
+{
+    CString tmpStr;
+
+    tmpStr.Format(L"%d", num);
+    m_ctrListHosts.InsertItem(0, tmpStr); // Požiadavka
+
+    tmpStr.Format(L"%d", IP4Calc::ceilHosts(num)); // Zaokrúhlené
+    m_ctrListHosts.SetItemText(0, 1, tmpStr);
+
+}
+
 void CHostsDlg::initListHosts()
 {
+    m_ctrListHosts.SetExtendedStyle(
+        m_ctrListHosts.GetExtendedStyle() |
+        LVS_EX_GRIDLINES |
+        LVS_EX_FULLROWSELECT);
+
     CRect rect;
     m_ctrListHosts.GetClientRect(&rect);
     
     int colWidth = rect.Width() / 2;
 
-    m_ctrListHosts.InsertColumn(0, _T("Požiadavka"), LVCFMT_CENTER, colWidth);
-    m_ctrListHosts.InsertColumn(1, _T("Zaokrúhlené "), LVCFMT_CENTER, colWidth);
+    m_ctrListHosts.InsertColumn(0, _T("Požiadavka"), LVCFMT_LEFT, colWidth);
+    m_ctrListHosts.InsertColumn(1, _T("Zaokrúhlené "), LVCFMT_LEFT, colWidth);
+
+    for (auto i : m_outHosts)
+        addListHostsRow(i);
 }
 
 void CHostsDlg::DoDataExchange(CDataExchange* pDX)

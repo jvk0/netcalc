@@ -14,6 +14,7 @@ IMPLEMENT_DYNAMIC(CTabSub, CDialogEx)
 
 CTabSub::CTabSub(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB1, pParent),
+    m_subnetHosts({3, 3, 8, 10, 100}),
     m_calcPrefix(0),
     m_valIPBaseNet(0),
     m_valSTextInfo(_T(""))
