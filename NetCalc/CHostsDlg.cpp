@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "resource.h"
 
@@ -12,7 +12,9 @@ IMPLEMENT_DYNAMIC(CHostsDlg, CDialogEx)
 
 CHostsDlg::CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_HOSTS_DIALOG, pParent),
-    m_outHosts(inHosts)
+    m_sumHosts(0),
+    m_outHosts(inHosts),
+    m_valEdNum(_T("0"))
 {
 }
 
@@ -30,9 +32,9 @@ void CHostsDlg::addListHostsRow(int num)
     CString tmpStr;
 
     tmpStr.Format(L"%d", num);
-    m_ctrListHosts.InsertItem(0, tmpStr); // Po�iadavka
+    m_ctrListHosts.InsertItem(0, tmpStr); // Požiadavka
 
-    tmpStr.Format(L"%d", IP4Calc::ceilHosts(num)); // Zaokr�hlen�
+    tmpStr.Format(L"%d", IP4Calc::ceilHosts(num)); // Zaokrúhlené
     m_ctrListHosts.SetItemText(0, 1, tmpStr);
 
 }
@@ -48,9 +50,9 @@ void CHostsDlg::initListHosts()
     m_ctrListHosts.GetClientRect(&rect);
     
     int colWidth = rect.Width() / 2;
-
-    m_ctrListHosts.InsertColumn(0, _T("Po�iadavka"), LVCFMT_LEFT, colWidth);
-    m_ctrListHosts.InsertColumn(1, _T("Zaokr�hlen� "), LVCFMT_LEFT, colWidth);
+    
+    m_ctrListHosts.InsertColumn(0, _T("Požiadavka"), LVCFMT_LEFT, colWidth);
+    m_ctrListHosts.InsertColumn(1, _T("Zaokrúhlené "), LVCFMT_LEFT, colWidth);
 
     for (auto i : m_outHosts)
         addListHostsRow(i);
@@ -60,6 +62,7 @@ void CHostsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_HDLG_LIST_HOSTS, m_ctrListHosts);
+    DDX_Text(pDX, IDC_HDLG_ED_NUM, m_valEdNum);
 }
 
 void CHostsDlg::OnOK()
@@ -87,7 +90,23 @@ BOOL CHostsDlg::OnInitDialog()
 
 
 BEGIN_MESSAGE_MAP(CHostsDlg, CDialogEx)
+    ON_BN_CLICKED(IDC_HDLG_BTN_ADD, &CHostsDlg::OnBntClickedAdd)
 END_MESSAGE_MAP()
 
 
 // CHostsDlg message handlers
+
+void CHostsDlg::OnBntClickedAdd()
+{
+    UpdateData(TRUE);
+
+    int num = _ttoi(m_valEdNum);
+
+    if (num < 1) {
+        MessageBox(L"Počet požadovaných adries musí byť aspoň 1!", L"Chybná hodnota", MB_OK | MB_ICONERROR);
+        return;
+    }
+
+    m_outHosts.push_back(num);
+    addListHostsRow(num);
+}

@@ -18,6 +18,10 @@ public:
     IP4Calc::HostsVect getHostsVec();
 protected:
     IP4Calc::HostsVect m_outHosts;
+    int                m_sumHosts;
+
+    CListCtrl          m_ctrListHosts;
+    CString            m_valEdNum;
 
     void addListHostsRow(int num);
     void initListHosts();
@@ -30,5 +34,6 @@ protected:
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
 public:
-    CListCtrl m_ctrListHosts;
+
+    afx_msg void OnBntClickedAdd();
 };
