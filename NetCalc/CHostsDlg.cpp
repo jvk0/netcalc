@@ -12,7 +12,7 @@ IMPLEMENT_DYNAMIC(CHostsDlg, CDialogEx)
 
 CHostsDlg::CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_HOSTS_DIALOG, pParent),
-    m_sumHosts(0),
+    m_sumHosts(IP4Calc::sumHostReq(inHosts)),
     m_outHosts(inHosts),
     m_valEdNum(_T("0"))
 {
@@ -109,4 +109,5 @@ void CHostsDlg::OnBntClickedAdd()
 
     m_outHosts.push_back(num);
     addListHostsRow(num);
+    m_sumHosts += num; // Update sum
 }
