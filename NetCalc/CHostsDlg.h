@@ -21,10 +21,13 @@ protected:
     int                m_sumHosts;
 
     CListCtrl          m_ctrListHosts;
+    
     CString            m_valEdNum;
-
+    CString            m_valSTextSum;
+    
     void addListHostsRow(int num);
     void initListHosts();
+    void updateSumText();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
@@ -32,8 +35,6 @@ protected:
     virtual void OnCancel() override;
 
     virtual BOOL OnInitDialog() override;
-    DECLARE_MESSAGE_MAP()
-public:
-
     afx_msg void OnBntClickedAdd();
+    DECLARE_MESSAGE_MAP()  
 };
