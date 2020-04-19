@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IP4Calc.h"
 
 // CTabSub dialog
 class CTabSub : public CDialogEx {
@@ -15,13 +16,15 @@ public:
     #endif
 
 protected:
-    int             m_calcPrefix;
+    IP4Calc::HostsVect  m_subnetHosts;
+
+    int                 m_calcPrefix;
  
-    CIPAddressCtrl  m_ctrIPBaseNet;
-    CSpinButtonCtrl m_ctrSpinPrefix;
+    CIPAddressCtrl      m_ctrIPBaseNet;
+    CSpinButtonCtrl     m_ctrSpinPrefix;
     
-    DWORD           m_valIPBaseNet;
-    CString         m_valSTextInfo;
+    DWORD               m_valIPBaseNet;
+    CString             m_valSTextInfo;
     
     void updateInfoStr();
 

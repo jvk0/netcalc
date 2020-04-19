@@ -5,7 +5,6 @@
 #include "NetCalc.h"
 #include "CTabSub.h"
 
-#include "IP4Calc.h"
 #include "IP4String.h"
 
 // CTabSub dialog
