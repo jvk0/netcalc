@@ -8,8 +8,9 @@
 
 IMPLEMENT_DYNAMIC(CHostsDlg, CDialogEx)
 
-CHostsDlg::CHostsDlg(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_HOSTS_DIALOG, pParent)
+CHostsDlg::CHostsDlg(IP4Calc::HostsVect& outHosts, CWnd* pParent /*=nullptr*/)
+    : CDialogEx(IDD_HOSTS_DIALOG, pParent),
+    m_outHosts(outHosts)
 {
 }
 

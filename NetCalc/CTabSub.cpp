@@ -4,6 +4,7 @@
 
 #include "NetCalc.h"
 #include "CTabSub.h"
+#include "CHostsDlg.h"
 
 #include "IP4String.h"
 
@@ -80,6 +81,7 @@ BEGIN_MESSAGE_MAP(CTabSub, CDialogEx)
     ON_NOTIFY(UDN_DELTAPOS, IDC_TAB1_SPIN_PREFIX, &CTabSub::OnDeltaPosSpinPrefix)
     ON_NOTIFY(IPN_FIELDCHANGED, IDC_TAB1_IP_BASE, &CTabSub::OnIPFieldChangedIPBase)
     #pragma warning(default: 26454)
+    ON_BN_CLICKED(IDC_TAB1_BTN_SETHOSTS, &CTabSub::OnBntClickedSetHosts)
 END_MESSAGE_MAP()
 
 
@@ -107,4 +109,11 @@ void CTabSub::OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult)
     updateInfoStr();
 
     *pResult = 0;
+}
+
+void CTabSub::OnBntClickedSetHosts()
+{
+    CHostsDlg hostsDlg(m_subnetHosts);
+
+    hostsDlg.DoModal();
 }

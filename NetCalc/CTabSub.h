@@ -37,4 +37,6 @@ protected:
     afx_msg void OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult);
     DECLARE_MESSAGE_MAP()
+public:
+    afx_msg void OnBntClickedSetHosts();
 };
