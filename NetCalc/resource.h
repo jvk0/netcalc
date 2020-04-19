@@ -50,10 +50,8 @@
 #define IDC_TAB1_BTN_CALC               1042
 #define IDC_HDLG_LIST_HOSTS             1043
 #define IDC_HDLG_ED_NUM                 1045
-#define IDC_BUTTON1                     1046
 #define IDC_HDLG_BTN_ADD                1046
 #define IDC_HDLG_ST_SUM                 1047
-#define IDC_BUTTON2                     1048
 #define IDC_HDLG_BTN_REMOVE             1048
 
 // Next default values for new objects

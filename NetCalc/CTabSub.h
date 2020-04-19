@@ -23,11 +23,13 @@ protected:
  
     CIPAddressCtrl      m_ctrIPBaseNet;
     CSpinButtonCtrl     m_ctrSpinPrefix;
-    
+    CListCtrl           m_ctrListNets;
+
     DWORD               m_valIPBaseNet;
     CString             m_valSTextInfo;
     
     void updateInfoStr();
+    void initListNets();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
@@ -38,5 +40,6 @@ protected:
     afx_msg void OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedSetHosts();
+    afx_msg void OnBntClickedCalc();
     DECLARE_MESSAGE_MAP()
 };

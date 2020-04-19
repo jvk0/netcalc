@@ -110,12 +110,18 @@ IP4Addr brdAddr(IP4Addr addr, IP4Addr mask)
 
 IP4Addr firstAddr(IP4Addr addr, IP4Addr mask)
 {
-    return netAddr(addr, mask) + 1;
+    if (mask == IP4_MAX) // 255.255.255.255 fix
+        return addr;
+    else
+        return netAddr(addr, mask) + 1;
 }
 
 IP4Addr lastAddr(IP4Addr addr, IP4Addr mask)
-{
-    return brdAddr(addr, mask) - 1;
+{   
+    if (mask == IP4_MAX) // 255.255.255.255 fix
+        return addr;
+    else
+        return brdAddr(addr, mask) - 1;
 }
 
 int ceilHosts(int hosts)

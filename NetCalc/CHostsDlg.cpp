@@ -57,8 +57,8 @@ void CHostsDlg::initListHosts()
     
     int colWidth = rect.Width() / 2;
     
-    m_ctrListHosts.InsertColumn(0, _T("Požadovaný"), LVCFMT_LEFT, colWidth);
-    m_ctrListHosts.InsertColumn(1, _T("Zaokrúhlený "), LVCFMT_LEFT, colWidth);
+    m_ctrListHosts.InsertColumn(0, L"Požadovaný", LVCFMT_LEFT, colWidth);
+    m_ctrListHosts.InsertColumn(1, L"Zaokrúhlený ", LVCFMT_LEFT, colWidth);
 
     for (auto i : m_outHosts)
         addListHostsRow(i);
@@ -119,7 +119,10 @@ void CHostsDlg::OnBntClickedAdd()
     int num = _ttoi(m_valEdNum);
 
     if (num < 1) {
-        MessageBox(L"Počet požadovaných adries musí byť aspoň 1!", L"Chybná hodnota", MB_OK | MB_ICONERROR);
+        MessageBox(L"Počet požadovaných adries musí byť väčší než nula!",
+            L"Chybná hodnota",
+            MB_OK | MB_ICONERROR);
+        
         return;
     }
 
