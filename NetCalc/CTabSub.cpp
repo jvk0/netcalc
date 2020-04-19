@@ -15,7 +15,7 @@ IMPLEMENT_DYNAMIC(CTabSub, CDialogEx)
 CTabSub::CTabSub(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB1, pParent),
     m_subnetHosts({1, 7, 254, 1023, 127, 15}), // TODO: Remove
-    m_subnetHostsSum(-1),
+    m_subnetHostsSum(0),
     m_calcPrefix(0),
     m_valIPBaseNet(0),
     m_valSTextInfo(_T(""))
@@ -146,7 +146,7 @@ void CTabSub::OnBntClickedCalc()
     using namespace IP4Calc;
     using namespace IP4String;
     
-    if (m_subnetHostsSum == -1) {
+    if (!m_subnetHostsSum) {
         MessageBox(L"Najskôr nastavte podsiete!", L"Chyba", MB_OK | MB_ICONERROR);
         return;
     }
