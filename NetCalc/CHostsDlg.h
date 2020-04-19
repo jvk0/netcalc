@@ -7,15 +7,19 @@ class CHostsDlg : public CDialogEx {
     DECLARE_DYNAMIC(CHostsDlg)
 
 public:
-    CHostsDlg(IP4Calc::HostsVect& outHosts, CWnd* pParent = nullptr); // Modified standard constructor
+    CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent = nullptr); // Modified standard constructor
     virtual ~CHostsDlg();
 
     // Dialog Data
     #ifdef AFX_DESIGN_TIME
         enum { IDD = IDD_HOSTS_DIALOG };
     #endif
+
+    IP4Calc::HostsVect getHostsVec();
 protected:
     IP4Calc::HostsVect m_outHosts;
+
+    void initListHosts();
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
@@ -24,4 +28,6 @@ protected:
 
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
+public:
+    CListCtrl m_ctrListHosts;
 };

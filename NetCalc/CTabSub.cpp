@@ -115,5 +115,8 @@ void CTabSub::OnBntClickedSetHosts()
 {
     CHostsDlg hostsDlg(m_subnetHosts);
 
-    hostsDlg.DoModal();
+    if (IDOK == hostsDlg.DoModal())
+        m_subnetHosts = hostsDlg.getHostsVec();
+    else
+        MessageBox(L"!IDOK", L"DEBUG"); // REMOVE
 }

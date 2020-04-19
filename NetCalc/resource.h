@@ -10,7 +10,6 @@
 #define IDD_OLE_PL_TAB1                 106
 #define IDD_OLE_PL_TAB2                 107
 #define IDR_MAINFRAME                   128
-#define IDD_DIALOG1                     133
 #define IDD_HOSTS_DIALOG                133
 #define IDC_TAB_MAIN                    1001
 #define IDC_TAB0_IP_ADDR                1004
@@ -49,6 +48,8 @@
 #define IDC_TAB1_LIST_NETS              1039
 #define IDC_TAB1_BTN_SETHOSTS           1040
 #define IDC_TAB1_BTN_CALC               1042
+#define IDC_HDLG_LIST_HOSTS             1043
+#define IDC_LIST2                       1044
 
 // Next default values for new objects
 // 
@@ -56,7 +57,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1043
+#define _APS_NEXT_CONTROL_VALUE         1045
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
