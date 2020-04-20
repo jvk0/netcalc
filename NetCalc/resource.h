@@ -54,8 +54,7 @@
 #define IDC_HDLG_ST_SUM                 1047
 #define IDC_HDLG_BTN_REMOVE             1048
 #define IDC_TAB1_BNT_SAVE               1049
-#define IDC_HDLG_BTN_REMOVE2            1049
-#define IDC_HDLG_BTN_CLEAR              1049
+#define IDC_HDLG_BTN_CLEAR              1050
 
 // Next default values for new objects
 // 
@@ -63,7 +62,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1050
+#define _APS_NEXT_CONTROL_VALUE         1051
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
