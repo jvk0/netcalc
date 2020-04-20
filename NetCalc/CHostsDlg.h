@@ -38,5 +38,6 @@ protected:
     virtual BOOL OnInitDialog() override;
     afx_msg void OnBntClickedAdd();
     afx_msg void OnBtnClickedRemove();
-    DECLARE_MESSAGE_MAP()  
+    afx_msg void OnBntClickedClear();
+    DECLARE_MESSAGE_MAP()     
 };

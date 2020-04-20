@@ -107,6 +107,7 @@ BOOL CHostsDlg::OnInitDialog()
 BEGIN_MESSAGE_MAP(CHostsDlg, CDialogEx)
     ON_BN_CLICKED(IDC_HDLG_BTN_ADD, &CHostsDlg::OnBntClickedAdd)
     ON_BN_CLICKED(IDC_HDLG_BTN_REMOVE, &CHostsDlg::OnBtnClickedRemove)
+    ON_BN_CLICKED(IDC_HDLG_BTN_CLEAR, &CHostsDlg::OnBntClickedClear)
 END_MESSAGE_MAP()
 
 
@@ -150,4 +151,20 @@ void CHostsDlg::OnBtnClickedRemove()
     m_ctrListHosts.DeleteItem(nItem);
 
     updateSumText();
+}
+
+void CHostsDlg::OnBntClickedClear()
+{
+    int response = MessageBox(
+        L"Odstrániť všetky položky?",
+        L"Nastavenie podsietí",
+        MB_OKCANCEL | MB_ICONWARNING);
+
+    if (response == IDOK) {
+        m_outHosts.clear();
+        m_ctrListHosts.DeleteAllItems();
+
+        m_sumHosts = 0;
+        updateSumText();
+    }
 }

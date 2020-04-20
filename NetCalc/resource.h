@@ -53,8 +53,9 @@
 #define IDC_HDLG_BTN_ADD                1046
 #define IDC_HDLG_ST_SUM                 1047
 #define IDC_HDLG_BTN_REMOVE             1048
-#define IDC_BUTTON1                     1049
 #define IDC_TAB1_BNT_SAVE               1049
+#define IDC_HDLG_BTN_REMOVE2            1049
+#define IDC_HDLG_BTN_CLEAR              1049
 
 // Next default values for new objects
 // 
