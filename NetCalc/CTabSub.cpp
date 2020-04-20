@@ -62,6 +62,7 @@ void CTabSub::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_TAB1_ST_INFO, m_valSTextInfo);
     DDX_Control(pDX, IDC_TAB1_IP_BASE, m_ctrIPBaseNet);
     DDX_Control(pDX, IDC_TAB1_LIST_NETS, m_ctrListNets);
+    DDX_Control(pDX, IDC_TAB1_BNT_SAVE, m_ctrBtnSave);
 }
 
 void CTabSub::OnOK()
@@ -101,6 +102,7 @@ BEGIN_MESSAGE_MAP(CTabSub, CDialogEx)
     #pragma warning(default: 26454)
     ON_BN_CLICKED(IDC_TAB1_BTN_SETHOSTS, &CTabSub::OnBntClickedSetHosts)
     ON_BN_CLICKED(IDC_TAB1_BTN_CALC, &CTabSub::OnBntClickedCalc)
+    ON_BN_CLICKED(IDC_TAB1_BNT_SAVE, &CTabSub::OnBntClickedSave)
 END_MESSAGE_MAP()
 
 
@@ -190,5 +192,39 @@ void CTabSub::OnBntClickedCalc()
         // Adresný rozsah
         tmpStr.Format(L"%s - %s", addr2Str(firstAddr(addr, mask)), addr2Str(lastAddr(addr, mask)));
         m_ctrListNets.SetItemText(0, 5, tmpStr); 
+    }
+
+    m_ctrBtnSave.EnableWindow(TRUE);
+}
+
+void CTabSub::OnBntClickedSave()
+{
+    CString tmpStr(L"Comma-Separated Values File (*.csv)|*.csv|All Files (*.*)|*.*||"); // Filter for CFileDialog
+
+    CFileDialog saveDlg(FALSE, L".csv", NULL, OFN_OVERWRITEPROMPT, tmpStr, NULL, 0, TRUE);
+
+    if (saveDlg.DoModal() != IDOK) // Canceled
+        return;
+
+    try {
+        CStdioFile fileObj(saveDlg.GetPathName(), CFile::modeCreate | CFile::modeWrite);
+
+        fileObj.WriteString(L"Size,Required,Used,Network address,Mask,Address range\n"); // Header
+
+        int itemCount = m_ctrListNets.GetItemCount();
+        for (int i = 0; i < itemCount; i++) {
+            tmpStr = m_ctrListNets.GetItemText(i, 0) + ',' +
+                m_ctrListNets.GetItemText(i, 1) + ',' +
+                m_ctrListNets.GetItemText(i, 2) + ',' +
+                m_ctrListNets.GetItemText(i, 3) + ',' +
+                m_ctrListNets.GetItemText(i, 4) + ',' +
+                m_ctrListNets.GetItemText(i, 5) + '\n';
+
+            fileObj.WriteString(tmpStr);
+        }
+
+        fileObj.Close();
+    } catch (...) {
+        MessageBox(L"Počas zápisu došlo k výnimke", L"Zápis zlyhal", MB_OK | MB_ICONERROR);
     }
 }

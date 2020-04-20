@@ -24,6 +24,7 @@ protected:
     CIPAddressCtrl      m_ctrIPBaseNet;
     CSpinButtonCtrl     m_ctrSpinPrefix;
     CListCtrl           m_ctrListNets;
+    CButton             m_ctrBtnSave;
 
     DWORD               m_valIPBaseNet;
     CString             m_valSTextInfo;
@@ -41,5 +42,6 @@ protected:
     afx_msg void OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedSetHosts();
     afx_msg void OnBntClickedCalc();
+    afx_msg void OnBntClickedSave();
     DECLARE_MESSAGE_MAP()
 };
