@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CGraphDlg.h" />
     <ClInclude Include="CHostsDlg.h" />
     <ClInclude Include="CTabCalc.h" />
     <ClInclude Include="CTabMask.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CGraphDlg.cpp" />
     <ClCompile Include="CHostsDlg.cpp" />
     <ClCompile Include="CTabCalc.cpp" />
     <ClCompile Include="CTabMask.cpp" />
