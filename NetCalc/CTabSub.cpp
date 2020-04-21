@@ -47,10 +47,11 @@ void CTabSub::initListNets()
 
     m_ctrListNets.InsertColumn(0, L"Veľkosť siete", LVCFMT_LEFT, 95);
     m_ctrListNets.InsertColumn(1, L"Požadovaná veľkosť", LVCFMT_LEFT, 135);
-    m_ctrListNets.InsertColumn(2, L"Využitie", LVCFMT_LEFT, 70);
+    m_ctrListNets.InsertColumn(2, L"Využitie [%]", LVCFMT_LEFT, 85);
     m_ctrListNets.InsertColumn(3, L"Adresa siete", LVCFMT_LEFT, 130);
     m_ctrListNets.InsertColumn(4, L"Maska", LVCFMT_LEFT, 130);
-    m_ctrListNets.InsertColumn(5, L"Adresný rozsah", LVCFMT_CENTER, 220);
+    m_ctrListNets.InsertColumn(5, L"Prvá adresa", LVCFMT_LEFT, 130);
+    m_ctrListNets.InsertColumn(6, L"Posledná adresa", LVCFMT_LEFT, 130);
 
     m_ctrListNets.DeleteAllItems(); // Scrollbar bug fix
 }
@@ -181,7 +182,7 @@ void CTabSub::OnBntClickedCalc()
         m_ctrListNets.SetItemText(0, 1, tmpStr); 
 
         // Využitie
-        tmpStr.Format(L"%.2f %%", double(req) / double(size) * 100.0);
+        tmpStr.Format(L"%.2f", double(req) / double(size) * 100.0);
         m_ctrListNets.SetItemText(0, 2, tmpStr);
 
         // Adresa siete
@@ -191,9 +192,11 @@ void CTabSub::OnBntClickedCalc()
         // Maska
         m_ctrListNets.SetItemText(0, 4, addr2Str(mask)); 
 
-        // Adresný rozsah
-        tmpStr.Format(L"%s - %s", addr2Str(firstAddr(addr, mask)), addr2Str(lastAddr(addr, mask)));
-        m_ctrListNets.SetItemText(0, 5, tmpStr); 
+        // Prvá adresa
+        m_ctrListNets.SetItemText(0, 5, addr2Str(firstAddr(addr, mask)));
+
+        // Posledná adresa
+        m_ctrListNets.SetItemText(0, 6, addr2Str(lastAddr(addr, mask)));
     }
 
     m_ctrBtnSave.EnableWindow(TRUE);
@@ -211,7 +214,7 @@ void CTabSub::OnBntClickedSave()
     try {
         CStdioFile fileObj(saveDlg.GetPathName(), CFile::modeCreate | CFile::modeWrite);
 
-        fileObj.WriteString(L"Size,Required,Used,Network address,Mask,Address range\n"); // Header
+        fileObj.WriteString(L"Size,Required,Used in %,Network address,Mask,First address,Last address\n"); // Header
 
         int itemCount = m_ctrListNets.GetItemCount();
         for (int i = 0; i < itemCount; i++) {
@@ -220,7 +223,8 @@ void CTabSub::OnBntClickedSave()
                 m_ctrListNets.GetItemText(i, 2) + ',' +
                 m_ctrListNets.GetItemText(i, 3) + ',' +
                 m_ctrListNets.GetItemText(i, 4) + ',' +
-                m_ctrListNets.GetItemText(i, 5) + '\n';
+                m_ctrListNets.GetItemText(i, 5) + ',' +
+                m_ctrListNets.GetItemText(i, 6) + '\n';
 
             fileObj.WriteString(tmpStr);
         }
@@ -234,7 +238,7 @@ void CTabSub::OnBntClickedSave()
 void CTabSub::OnDblClkListNets(NMHDR* pNMHDR, LRESULT* pResult)
 {
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-    
+
     CGraphDlg graphDlg;
     graphDlg.DoModal();
 
