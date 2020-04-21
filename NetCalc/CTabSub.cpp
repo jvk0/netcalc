@@ -5,6 +5,7 @@
 #include "NetCalc.h"
 #include "CTabSub.h"
 #include "CHostsDlg.h"
+#include "CGraphDlg.h"
 
 #include "IP4String.h"
 
@@ -99,6 +100,7 @@ BEGIN_MESSAGE_MAP(CTabSub, CDialogEx)
     #pragma warning(disable: 26454)
     ON_NOTIFY(UDN_DELTAPOS, IDC_TAB1_SPIN_PREFIX, &CTabSub::OnDeltaPosSpinPrefix)
     ON_NOTIFY(IPN_FIELDCHANGED, IDC_TAB1_IP_BASE, &CTabSub::OnIPFieldChangedIPBase)
+    ON_NOTIFY(NM_DBLCLK, IDC_TAB1_LIST_NETS, &CTabSub::OnDblClkListNets)
     #pragma warning(default: 26454)
     ON_BN_CLICKED(IDC_TAB1_BTN_SETHOSTS, &CTabSub::OnBntClickedSetHosts)
     ON_BN_CLICKED(IDC_TAB1_BTN_CALC, &CTabSub::OnBntClickedCalc)
@@ -227,4 +229,14 @@ void CTabSub::OnBntClickedSave()
     } catch (...) {
         MessageBox(L"Počas zápisu došlo k výnimke", L"Zápis zlyhal", MB_OK | MB_ICONERROR);
     }
+}
+
+void CTabSub::OnDblClkListNets(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+    
+    CGraphDlg graphDlg;
+    graphDlg.DoModal();
+
+    *pResult = 0;
 }

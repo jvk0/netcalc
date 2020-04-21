@@ -40,6 +40,7 @@ protected:
     virtual BOOL OnInitDialog() override;
     afx_msg void OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblClkListNets(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedSetHosts();
     afx_msg void OnBntClickedCalc();
     afx_msg void OnBntClickedSave();
