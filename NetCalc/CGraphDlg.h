@@ -21,7 +21,12 @@ protected:
     virtual void OnOK() override;
 
     afx_msg void OnPaint();
+    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
     DECLARE_MESSAGE_MAP()
 private:
+    // Graph colors
+    static constexpr COLORREF sliceColor[2] = {RGB(74, 134, 232), RGB(106, 168, 79)};
+    static constexpr COLORREF outlineColor  = RGB(240, 240, 240);
+
     double m_usedPct;
 };

@@ -24,11 +24,8 @@ CGraphDlg::~CGraphDlg()
 
 void CGraphDlg::drawGraph(CDC& dc)
 {
-    // Margin for drawing area 
+    // Margin for graph drawing area 
     constexpr int DRAW_MARGIN = 15;
-    // Graph colors
-    constexpr COLORREF sliceColor[2] = {RGB(74, 134, 232), RGB(106, 168, 79)};
-    constexpr COLORREF outlineColor  = RGB(240, 240, 240);
     // For degree calculation
     constexpr double TAU = 2.0 * 3.14159265359;	
 
@@ -38,17 +35,17 @@ void CGraphDlg::drawGraph(CDC& dc)
     // Set drawing area 
     drawRect.top    += DRAW_MARGIN;
     drawRect.left   += DRAW_MARGIN;
-    drawRect.bottom -= (drawRect.Height() / 9 + DRAW_MARGIN); // Room for button
-    drawRect.right  -= DRAW_MARGIN;
+    drawRect.bottom -= (drawRect.Height() / 7 + DRAW_MARGIN); // Room for button
+    drawRect.right  -= (drawRect.Width() / 4 + DRAW_MARGIN);
 
-    dc.FillSolidRect(&drawRect, RGB(255, 0, 255)); // TODO: Remove
-
-    // Pie graph center points
-    int centerX = drawRect.left + drawRect.Width() / 2;
-    int centerY = drawRect.top  + drawRect.Height() / 2;
+    //dc.FillSolidRect(&drawRect, RGB(255, 255, 0)); // TODO: Remove
 
     // Pie graph radius
     int radius = min(drawRect.Height(), drawRect.Width()) / 2;
+
+    // Pie graph center points
+    int centerX = drawRect.left + radius;
+    int centerY = drawRect.top  + drawRect.Height() / 2;  
 
     // Pie graph bounding rectangle
     CRect pieRect;
@@ -83,7 +80,7 @@ void CGraphDlg::drawGraph(CDC& dc)
         dc.SelectObject(&tmpBrush);
 
         dc.Pie(pieRect, CPoint(lastX, lastY), CPoint(newX, newY));
-        
+
         tmpBrush.Detach();
         tmpPen.Detach();
         
@@ -92,10 +89,14 @@ void CGraphDlg::drawGraph(CDC& dc)
 
         nextVal = 1.0;
     }
+
 }
 
 void CGraphDlg::drawLegend(CDC& dc)
 {
+    CRect drawRect;
+    GetClientRect(&drawRect);
+
 }
 
 void CGraphDlg::DoDataExchange(CDataExchange* pDX)
@@ -112,6 +113,7 @@ void CGraphDlg::OnOK()
 
 BEGIN_MESSAGE_MAP(CGraphDlg, CDialogEx)
     ON_WM_PAINT()
+    ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -123,4 +125,23 @@ void CGraphDlg::OnPaint()
     CPaintDC dc(this); 
     
     drawGraph(dc);
+    drawLegend(dc);
+}
+
+HBRUSH CGraphDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+    HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+
+    if (nCtlColor == CTLCOLOR_STATIC) {
+        switch (pWnd->GetDlgCtrlID()) {
+            case IDC_GRAPH_ST_UNUSED:
+                pDC->SetTextColor(sliceColor[0]);
+                break;
+            case IDC_GRAPH_ST_USED:
+                pDC->SetTextColor(sliceColor[1]);
+                break;
+        }
+    }
+
+    return hbr;
 }
