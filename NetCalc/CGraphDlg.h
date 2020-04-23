@@ -14,6 +14,7 @@ public:
 
 protected:
     void drawGraph(CDC& dc);
+    void drawLegend(CDC& dc);
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     

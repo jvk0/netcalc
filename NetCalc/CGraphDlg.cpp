@@ -38,8 +38,8 @@ void CGraphDlg::drawGraph(CDC& dc)
     // Set drawing area 
     drawRect.top    += DRAW_MARGIN;
     drawRect.left   += DRAW_MARGIN;
-    drawRect.bottom -= DRAW_MARGIN;
-    drawRect.right  -= (drawRect.Width() / 3 + DRAW_MARGIN);
+    drawRect.bottom -= (drawRect.Height() / 9 + DRAW_MARGIN); // Room for button
+    drawRect.right  -= DRAW_MARGIN;
 
     dc.FillSolidRect(&drawRect, RGB(255, 0, 255)); // TODO: Remove
 
@@ -65,24 +65,37 @@ void CGraphDlg::drawGraph(CDC& dc)
     lastX = centerX + radius;
     lastY = centerY;
 
+    CBrush tmpBrush;
+    CPen   tmpPen;
+
     double nextVal = ( 100 - m_usedPct) / 100;
     for (int i = 0; i < 2; i++) {
         newX = centerX + int(radius * std::cos(TAU * nextVal));
         newY = centerY - int(radius * std::sin(TAU * nextVal));
 
-        CBrush tmpBrush(sliceColor[i]);
-        CPen   tmpPen(PS_SOLID, 1, outlineColor);
+        tmpBrush.CreateSolidBrush(sliceColor[i]);
+        if (m_usedPct == 100)
+            tmpPen.CreatePen(PS_SOLID, 1, sliceColor[i]); // No outline
+        else
+            tmpPen.CreatePen(PS_SOLID, 1, outlineColor);
    
         dc.SelectObject(&tmpPen);
         dc.SelectObject(&tmpBrush);
 
         dc.Pie(pieRect, CPoint(lastX, lastY), CPoint(newX, newY));
-        Sleep(5000);
+        
+        tmpBrush.Detach();
+        tmpPen.Detach();
+        
         lastX   = newX;
         lastY   = newY;
 
         nextVal = 1.0;
     }
+}
+
+void CGraphDlg::drawLegend(CDC& dc)
+{
 }
 
 void CGraphDlg::DoDataExchange(CDataExchange* pDX)
