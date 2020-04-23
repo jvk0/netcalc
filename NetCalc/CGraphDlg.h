@@ -13,6 +13,9 @@ public:
     #endif
 
 protected:
+    CString m_valSTextUnused;
+    CString m_valSTextUsed;
+
     void drawGraph(CDC& dc);
     void drawLegend(CDC& dc);
 
@@ -29,4 +32,5 @@ private:
     static constexpr COLORREF outlineColor  = RGB(240, 240, 240);
 
     double m_usedPct;
+    double m_unusedPct;
 };

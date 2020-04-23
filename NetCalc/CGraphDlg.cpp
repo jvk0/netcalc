@@ -14,8 +14,11 @@ IMPLEMENT_DYNAMIC(CGraphDlg, CDialogEx)
 
 CGraphDlg::CGraphDlg(double usedPct, CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_GRAPH_DIALOG, pParent),
-    m_usedPct(usedPct)
+    m_usedPct(usedPct),
+    m_unusedPct(100 - usedPct)
 {
+    m_valSTextUnused.Format(L"Nevyužité Adresy (%.2f%%)", m_unusedPct);
+    m_valSTextUsed.Format(L"Využité Adresy (%.2f%%)", m_usedPct);
 }
 
 CGraphDlg::~CGraphDlg()
@@ -35,10 +38,10 @@ void CGraphDlg::drawGraph(CDC& dc)
     // Set drawing area 
     drawRect.top    += DRAW_MARGIN;
     drawRect.left   += DRAW_MARGIN;
-    drawRect.bottom -= (drawRect.Height() / 7 + DRAW_MARGIN); // Room for button
-    drawRect.right  -= (drawRect.Width() / 4 + DRAW_MARGIN);
+    drawRect.bottom -= LONG(drawRect.Height() / 7 + DRAW_MARGIN); // Room for button
+    drawRect.right  -= LONG(drawRect.Width() / 2.5 + DRAW_MARGIN); // Room for legend
 
-    //dc.FillSolidRect(&drawRect, RGB(255, 255, 0)); // TODO: Remove
+    // dc.FillSolidRect(&drawRect, RGB(255, 255, 0)); // TODO: Remove
 
     // Pie graph radius
     int radius = min(drawRect.Height(), drawRect.Width()) / 2;
@@ -54,21 +57,21 @@ void CGraphDlg::drawGraph(CDC& dc)
     pieRect.bottom = centerY + radius;
     pieRect.right  = centerX + radius;
 
-    int  newX;
-    int  newY;
-    int  lastX;
-    int  lastY;
+    int  endX;
+    int  endY;
+    int  beginX;
+    int  beginY;
 
-    lastX = centerX + radius;
-    lastY = centerY;
+    beginX = centerX + radius;
+    beginY = centerY;
 
     CBrush tmpBrush;
     CPen   tmpPen;
 
-    double nextVal = ( 100 - m_usedPct) / 100;
+    double nextVal = m_unusedPct / 100;
     for (int i = 0; i < 2; i++) {
-        newX = centerX + int(radius * std::cos(TAU * nextVal));
-        newY = centerY - int(radius * std::sin(TAU * nextVal));
+        endX = centerX + int(radius * std::cos(TAU * nextVal));
+        endY = centerY - int(radius * std::sin(TAU * nextVal));
 
         tmpBrush.CreateSolidBrush(sliceColor[i]);
         if (m_usedPct == 100)
@@ -79,13 +82,13 @@ void CGraphDlg::drawGraph(CDC& dc)
         dc.SelectObject(&tmpPen);
         dc.SelectObject(&tmpBrush);
 
-        dc.Pie(pieRect, CPoint(lastX, lastY), CPoint(newX, newY));
-
+        dc.Pie(pieRect, CPoint(beginX, beginY), CPoint(endX, endY));
+        
         tmpBrush.Detach();
         tmpPen.Detach();
         
-        lastX   = newX;
-        lastY   = newY;
+        beginX   = endX;
+        beginY   = endY;
 
         nextVal = 1.0;
     }
@@ -102,6 +105,8 @@ void CGraphDlg::drawLegend(CDC& dc)
 void CGraphDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+    DDX_Text(pDX, IDC_GRAPH_ST_UNUSED, m_valSTextUnused);
+    DDX_Text(pDX, IDC_GRAPH_ST_USED, m_valSTextUsed);
 }
 
 void CGraphDlg::OnOK()
