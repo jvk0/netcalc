@@ -239,7 +239,9 @@ void CTabSub::OnDblClkListNets(NMHDR* pNMHDR, LRESULT* pResult)
 {
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 
-    CGraphDlg graphDlg;
+    double usedPct = _wtof(m_ctrListNets.GetItemText(pNMItemActivate->iItem, 2));
+
+    CGraphDlg graphDlg(usedPct);
     graphDlg.DoModal();
 
     *pResult = 0;

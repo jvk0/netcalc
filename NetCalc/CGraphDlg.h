@@ -3,9 +3,8 @@
 // CGraphDlg dialog
 class CGraphDlg : public CDialogEx {
     DECLARE_DYNAMIC(CGraphDlg)
-
 public:
-    CGraphDlg(CWnd* pParent = nullptr);   // standard constructor
+    CGraphDlg(double usedPct, CWnd* pParent = nullptr);    // Modified standard constructor
     virtual ~CGraphDlg();
 
     // Dialog Data
@@ -18,6 +17,10 @@ protected:
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
+    virtual void OnOK() override;
+
     afx_msg void OnPaint();
     DECLARE_MESSAGE_MAP()
+private:
+    double m_usedPct;
 };

@@ -12,8 +12,9 @@
 
 IMPLEMENT_DYNAMIC(CGraphDlg, CDialogEx)
 
-CGraphDlg::CGraphDlg(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_GRAPH_DIALOG, pParent)
+CGraphDlg::CGraphDlg(double usedPct, CWnd* pParent /*=nullptr*/)
+    : CDialogEx(IDD_GRAPH_DIALOG, pParent),
+    m_usedPct(usedPct)
 {
 }
 
@@ -23,65 +24,65 @@ CGraphDlg::~CGraphDlg()
 
 void CGraphDlg::drawGraph(CDC& dc)
 {
-	constexpr int DRAW_MARGIN = 20;
-	// Graph colors
-	constexpr COLORREF sliceColor[2] = {RGB(255, 0, 0), RGB(0, 255, 0)};
-	// For degree calculation
-	constexpr double TAU = 2.0 * 3.14159265359;	
+    // Margin for drawing area 
+    constexpr int DRAW_MARGIN = 15;
+    // Graph colors
+    constexpr COLORREF sliceColor[2] = {RGB(74, 134, 232), RGB(106, 168, 79)};
+    constexpr COLORREF outlineColor  = RGB(240, 240, 240);
+    // For degree calculation
+    constexpr double TAU = 2.0 * 3.14159265359;	
 
-	double slice[2] = {0};
-	slice[0] = (double) (75 / double(100));
-	slice[1] = (double) (25 / double(100));
+    CRect drawRect;
+    GetClientRect(&drawRect);
 
-	CRect drawRect;
-	GetClientRect(&drawRect);
+    // Set drawing area 
+    drawRect.top    += DRAW_MARGIN;
+    drawRect.left   += DRAW_MARGIN;
+    drawRect.bottom -= DRAW_MARGIN;
+    drawRect.right  -= (drawRect.Width() / 3 + DRAW_MARGIN);
 
-	// Set drawing area 
-	drawRect.top    += DRAW_MARGIN;
-	drawRect.left   += DRAW_MARGIN;
-	drawRect.bottom -= DRAW_MARGIN;
-	drawRect.right  -= drawRect.Width() / 3 + DRAW_MARGIN;
-	
-	// Pie graph center points
-	int centerX = drawRect.left + drawRect.Width() / 2;
-	int centerY = drawRect.top  + drawRect.Height() / 2;
+    dc.FillSolidRect(&drawRect, RGB(255, 0, 255)); // TODO: Remove
 
-	// Pie graph radius
-	int radius = min(drawRect.Height(), drawRect.Width()) / 2;
+    // Pie graph center points
+    int centerX = drawRect.left + drawRect.Width() / 2;
+    int centerY = drawRect.top  + drawRect.Height() / 2;
 
-	// Pie graph bounding rectangle
-	CRect pieRect;
-	pieRect.top    = centerY - radius;
-	pieRect.left   = centerX - radius;
-	pieRect.bottom = centerY + radius;
-	pieRect.right  = centerX + radius;
+    // Pie graph radius
+    int radius = min(drawRect.Height(), drawRect.Width()) / 2;
 
-	int  newX;
-	int  newY;
-	int  lastX;
-	int  lastY;
+    // Pie graph bounding rectangle
+    CRect pieRect;
+    pieRect.top    = centerY - radius;
+    pieRect.left   = centerX - radius;
+    pieRect.bottom = centerY + radius;
+    pieRect.right  = centerX + radius;
 
-	lastX = centerX + radius;
-	lastY = centerY;
-	
-	double sum = 0;
-	for (int i = 0; i < 2; i++) {
-		sum += slice[i];
+    int  newX;
+    int  newY;
+    int  lastX;
+    int  lastY;
 
-		newX = centerX + int(radius * std::cos(TAU * sum));
-		newY = centerY - int(radius * std::sin(TAU * sum));
+    lastX = centerX + radius;
+    lastY = centerY;
 
-		CBrush tmpBrush(sliceColor[i]);
-		CPen   tmpPen(PS_SOLID, 1, sliceColor[i]);
-		
-		dc.SelectObject(&tmpPen);
-		dc.SelectObject(&tmpBrush);
+    double nextVal = ( 100 - m_usedPct) / 100;
+    for (int i = 0; i < 2; i++) {
+        newX = centerX + int(radius * std::cos(TAU * nextVal));
+        newY = centerY - int(radius * std::sin(TAU * nextVal));
 
-		dc.Pie(pieRect, CPoint(lastX, lastY), CPoint(newX, newY));
+        CBrush tmpBrush(sliceColor[i]);
+        CPen   tmpPen(PS_SOLID, 1, outlineColor);
+   
+        dc.SelectObject(&tmpPen);
+        dc.SelectObject(&tmpBrush);
 
-		lastX = newX;
-		lastY = newY;
-	}
+        dc.Pie(pieRect, CPoint(lastX, lastY), CPoint(newX, newY));
+        Sleep(5000);
+        lastX   = newX;
+        lastY   = newY;
+
+        nextVal = 1.0;
+    }
 }
 
 void CGraphDlg::DoDataExchange(CDataExchange* pDX)
@@ -89,8 +90,15 @@ void CGraphDlg::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
 }
 
+void CGraphDlg::OnOK()
+{
+    // Prevent Enter from closing the dialog  
+    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
+        CDialogEx::OnOK();
+}
+
 BEGIN_MESSAGE_MAP(CGraphDlg, CDialogEx)
-	ON_WM_PAINT()
+    ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 
@@ -99,7 +107,7 @@ END_MESSAGE_MAP()
 
 void CGraphDlg::OnPaint()
 {
-	CPaintDC dc(this); 
-	
-	drawGraph(dc);
+    CPaintDC dc(this); 
+    
+    drawGraph(dc);
 }
