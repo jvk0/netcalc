@@ -27,21 +27,24 @@ CGraphDlg::~CGraphDlg()
 
 void CGraphDlg::drawGraph(CDC& dc)
 {
-    // Margin for graph drawing area 
-    constexpr int DRAW_MARGIN = 15;
+    // Margins for graph drawing area 
+    constexpr int TOP_MARGIN    = 11;
+    constexpr int LEFT_MARGIN   = 13;
+    constexpr int BOTTOM_MARGIN = 10;
+    constexpr int RIGHT_MARGIN  = 42;
+    // Graph border
+    constexpr int BORDER        = 5;
     // For degree calculation
-    constexpr double TAU = 2.0 * 3.14159265359;	
+    constexpr double TAU        = 2.0 * 3.14159265359;	
 
     CRect drawRect;
     GetClientRect(&drawRect);
 
     // Set drawing area 
-    drawRect.top    += DRAW_MARGIN;
-    drawRect.left   += DRAW_MARGIN;
-    drawRect.bottom -= LONG(drawRect.Height() / 7 + DRAW_MARGIN); // Room for button
-    drawRect.right  -= LONG(drawRect.Width() / 2.5 + DRAW_MARGIN); // Room for legend
-
-    // dc.FillSolidRect(&drawRect, RGB(255, 255, 0)); // TODO: Remove
+    drawRect.top    += TOP_MARGIN;
+    drawRect.left   += LEFT_MARGIN;
+    drawRect.bottom -= LONG(drawRect.Height() / 7 + BOTTOM_MARGIN); // Room for button
+    drawRect.right  -= LONG(drawRect.Width() / 3 + RIGHT_MARGIN); // Room for legend
 
     // Pie graph radius
     int radius = min(drawRect.Height(), drawRect.Width()) / 2;
@@ -57,6 +60,10 @@ void CGraphDlg::drawGraph(CDC& dc)
     pieRect.bottom = centerY + radius;
     pieRect.right  = centerX + radius;
 
+    dc.DrawEdge(pieRect, EDGE_ETCHED, BF_RECT);
+
+    pieRect.DeflateRect(BORDER, BORDER);
+    
     int  endX;
     int  endY;
     int  beginX;
@@ -68,13 +75,13 @@ void CGraphDlg::drawGraph(CDC& dc)
     CBrush tmpBrush;
     CPen   tmpPen;
 
-    double nextVal = m_unusedPct / 100;
+    double endStep = m_unusedPct / 100;
     for (int i = 0; i < 2; i++) {
-        endX = centerX + int(radius * std::cos(TAU * nextVal));
-        endY = centerY - int(radius * std::sin(TAU * nextVal));
+        endX = centerX + int(radius * std::cos(TAU * endStep));
+        endY = centerY - int(radius * std::sin(TAU * endStep));
 
         tmpBrush.CreateSolidBrush(sliceColor[i]);
-        if (m_usedPct == 100)
+        if (!m_unusedPct)
             tmpPen.CreatePen(PS_SOLID, 1, sliceColor[i]); // No outline
         else
             tmpPen.CreatePen(PS_SOLID, 1, outlineColor);
@@ -90,15 +97,8 @@ void CGraphDlg::drawGraph(CDC& dc)
         beginX   = endX;
         beginY   = endY;
 
-        nextVal = 1.0;
+        endStep  = 1.0;
     }
-
-}
-
-void CGraphDlg::drawLegend(CDC& dc)
-{
-    CRect drawRect;
-    GetClientRect(&drawRect);
 
 }
 
@@ -130,7 +130,6 @@ void CGraphDlg::OnPaint()
     CPaintDC dc(this); 
     
     drawGraph(dc);
-    drawLegend(dc);
 }
 
 HBRUSH CGraphDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)

@@ -145,7 +145,6 @@ void CTabSub::OnBntClickedSetHosts()
     }
 }
 
-
 void CTabSub::OnBntClickedCalc()
 {
     using namespace IP4Calc;

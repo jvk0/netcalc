@@ -14,8 +14,6 @@ END_MESSAGE_MAP()
 // CNetCalcApp construction
 CNetCalcApp::CNetCalcApp()
 {
-    // TODO: Add construction code here,
-    // Place all significant initialization in InitInstance
 }
 
 // The one and only CNetCalcApp object
@@ -61,7 +59,6 @@ BOOL CNetCalcApp::InitInstance()
         //  Dismissed with "Cancel"
     } else if (nResponse == -1) {
         TRACE(traceAppMsg, 0, "Warning: dialog creation failed, so application is terminating unexpectedly.\n");
-        TRACE(traceAppMsg, 0, "Warning: if you are using MFC controls on the dialog, you cannot #define _AFX_NO_MFC_CONTROLS_IN_DIALOGS.\n");
     }
 
     // Delete the shell manager created above.
