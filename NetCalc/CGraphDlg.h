@@ -3,6 +3,7 @@
 // CGraphDlg dialog
 class CGraphDlg : public CDialogEx {
     DECLARE_DYNAMIC(CGraphDlg)
+
 public:
     CGraphDlg(double usedPct, CWnd* pParent = nullptr);    // Modified standard constructor
     virtual ~CGraphDlg();

@@ -18,9 +18,6 @@ public:
     IP4Calc::HostsVect getHostsVec();
     int getSumHosts();
 protected:
-    IP4Calc::HostsVect m_outHosts;
-    int                m_sumHosts;
-
     CListCtrl          m_ctrListHosts;
     
     CString            m_valEdNum;
@@ -39,5 +36,8 @@ protected:
     afx_msg void OnBntClickedAdd();
     afx_msg void OnBtnClickedRemove();
     afx_msg void OnBntClickedClear();
-    DECLARE_MESSAGE_MAP()     
+    DECLARE_MESSAGE_MAP()  
+private:
+    IP4Calc::HostsVect m_outHosts;
+    int                m_sumHosts;
 };

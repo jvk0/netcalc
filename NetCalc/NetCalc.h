@@ -9,7 +9,7 @@
 class CNetCalcApp : public CWinApp {
 public:
     CNetCalcApp();
-public:
+protected:
     virtual BOOL InitInstance();
 
     DECLARE_MESSAGE_MAP()

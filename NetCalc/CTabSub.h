@@ -16,11 +16,6 @@ public:
     #endif
 
 protected:
-    IP4Calc::HostsVect  m_subnetHosts;
-    int                 m_subnetHostsSum;
-
-    int                 m_calcPrefix;
- 
     CIPAddressCtrl      m_ctrIPBaseNet;
     CSpinButtonCtrl     m_ctrSpinPrefix;
     CListCtrl           m_ctrListNets;
@@ -45,4 +40,9 @@ protected:
     afx_msg void OnBntClickedCalc();
     afx_msg void OnBntClickedSave();
     DECLARE_MESSAGE_MAP()
+private:
+    IP4Calc::HostsVect  m_subnetHosts;
+    int                 m_subnetHostsSum;
+
+    int                 m_calcPrefix;
 };
