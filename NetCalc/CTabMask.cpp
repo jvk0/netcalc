@@ -5,6 +5,8 @@
 #include "NetCalc.h"
 #include "CTabMask.h"
 
+#include "IP4Calc.h"
+#include "IP4String.h"
 
 // CTabMask dialog
 
@@ -20,9 +22,19 @@ CTabMask::~CTabMask()
 {
 }
 
+void CTabMask::initComboMask()
+{
+    for (int i = 0; i < 32; i++)
+        m_ctrComboMask.InsertString(i, IP4String::addr2Str(IP4Calc::prefix2Mask(i + 1)));
+
+    m_ctrComboMask.SetCurSel(15);
+}
+
 void CTabMask::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_TAB2_COMBO_MASK, m_ctrComboMask);
+    DDX_Control(pDX, IDC_TAB2_SLIDER_MASK, m_ctrSliderMask);
 }
 
 void CTabMask::OnOK()
@@ -42,6 +54,10 @@ void CTabMask::OnCancel()
 BOOL CTabMask::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
+    
+    m_ctrSliderMask.SetRange(1, 32, TRUE);
+
+    initComboMask();
 
     return TRUE;
 }

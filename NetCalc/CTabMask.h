@@ -15,6 +15,9 @@ public:
     #endif
 
 protected:
+
+    void initComboMask();
+
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     virtual void OnOK() override;
@@ -22,4 +25,7 @@ protected:
 
     virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()
+public:
+    CComboBox m_ctrComboMask;
+    CSliderCtrl m_ctrSliderMask;
 };
