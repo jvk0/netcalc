@@ -75,7 +75,7 @@ void CNetCalcDlg::initTabs()
     TCITEM tab1;
     tab1.mask = TCIF_TEXT | TCIF_PARAM;
     tab1.lParam = reinterpret_cast<LPARAM>(&m_tabSub);
-    tab1.pszText = L"VLSM podsieťovanie";
+    tab1.pszText = L"VLSM Podsieťovanie";
     m_ctrTabMain.InsertItem(1, &tab1);
 
     TCITEM tab2;

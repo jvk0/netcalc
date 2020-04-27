@@ -7,7 +7,6 @@
 #include "NetCalc.h"
 #include "CGraphDlg.h"
 
-
 // CGraphDlg dialog
 
 IMPLEMENT_DYNAMIC(CGraphDlg, CDialogEx)

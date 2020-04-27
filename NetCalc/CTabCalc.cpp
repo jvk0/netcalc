@@ -45,6 +45,7 @@ bool CTabCalc::checkMask()
 
     if (!IP4Calc::isMaskValid(m_valIPMask)) {
         m_ctrSTextMaskValid.SetWindowTextW(L"Maska nie je platná!");
+        m_ctrEdPrefix.SetWindowTextW(L"!");
         return false;
     } else {
         m_ctrSTextMaskValid.SetWindowTextW(L"Maska je platná :)");
@@ -157,7 +158,6 @@ void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
     if (!checkMask()) {
         if (!prevError) {
             MessageBeep(MB_ICONEXCLAMATION);
-            m_ctrEdPrefix.SetWindowTextW(L"!");
             prevError = true;
         }
     } else {
