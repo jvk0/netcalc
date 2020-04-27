@@ -13,14 +13,13 @@
 IMPLEMENT_DYNAMIC(CTabMask, CDialogEx)
 
 CTabMask::CTabMask(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_OLE_PL_TAB2, pParent)
-    , m_valEditOutMask(_T(""))
-    , m_valEditOutWild(_T(""))
-    , m_valEditOutPrefix(_T(""))
-    , m_valEditOutBinMask(_T(""))
-    , m_valEditOutBinWild(_T(""))
+    : CDialogEx(IDD_OLE_PL_TAB2, pParent), 
+    m_valEditOutMask(_T("")),
+    m_valEditOutWild(_T("")),
+    m_valEditOutPrefix(_T("")),
+    m_valEditOutBinMask(_T("")),
+    m_valEditOutBinWild(_T(""))
 {
-
 }
 
 CTabMask::~CTabMask()
@@ -91,9 +90,11 @@ BOOL CTabMask::OnInitDialog()
     return TRUE;
 }
 
+
 BEGIN_MESSAGE_MAP(CTabMask, CDialogEx)
     ON_CBN_SELCHANGE(IDC_TAB2_COMBO_MASK, &CTabMask::OnComboSelChangeMask)
     ON_WM_HSCROLL()
+    ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -117,4 +118,19 @@ void CTabMask::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
     }
 
     CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
+}
+
+HBRUSH CTabMask::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+    HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+    
+    if (nCtlColor == CTLCOLOR_STATIC) {
+        switch (pWnd->GetDlgCtrlID()) {
+            case IDC_TAB2_ED_OPREFIX:
+                pDC->SetTextColor(OUT_PREFIX_CLR);
+                break;
+        }
+    }
+    
+    return hbr;
 }

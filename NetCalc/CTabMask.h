@@ -36,7 +36,9 @@ protected:
     virtual BOOL OnInitDialog() override;
     afx_msg void OnComboSelChangeMask();
     afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
     DECLARE_MESSAGE_MAP()   
 private:
-    static constexpr int DEFAULT_PREFIX = 16;
+    static constexpr int DEFAULT_PREFIX      = 16;
+    static constexpr COLORREF OUT_PREFIX_CLR = RGB(0, 0, 255);
 };
