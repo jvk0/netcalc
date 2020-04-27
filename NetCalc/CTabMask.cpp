@@ -23,6 +23,20 @@ void CTabMask::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
 }
 
+void CTabMask::OnOK()
+{
+    // Prevent Enter from closing the dialog  
+    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
+        CDialogEx::OnOK();
+}
+
+void CTabMask::OnCancel()
+{
+    // Prevent Esc from closing the dialog  
+    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
+        CDialog::OnCancel();
+}
+
 BEGIN_MESSAGE_MAP(CTabMask, CDialogEx)
 END_MESSAGE_MAP()
 
