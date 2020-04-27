@@ -15,8 +15,18 @@ public:
     #endif
 
 protected:
+    CComboBox m_ctrComboMask;
+    CSliderCtrl m_ctrSliderMask;
+
+    // Output variables
+    CString m_valEditOutMask;
+    CString m_valEditOutWild;
+    CString m_valEditOutPrefix;
+    CString m_valEditOutBinMask;
+    CString m_valEditOutBinWild;
 
     void initComboMask();
+    void calcOutput(int prefix);
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
@@ -24,10 +34,7 @@ protected:
     virtual void OnCancel() override;
 
     virtual BOOL OnInitDialog() override;
-    DECLARE_MESSAGE_MAP()
-public:
-    CComboBox m_ctrComboMask;
-    CSliderCtrl m_ctrSliderMask;
     afx_msg void OnComboSelChangeMask();
     afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+    DECLARE_MESSAGE_MAP()   
 };
