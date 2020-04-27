@@ -32,7 +32,7 @@ void CTabMask::initComboMask()
     for (int i = 0; i < 32; i++)
         m_ctrComboMask.InsertString(i, IP4String::addr2Str(IP4Calc::prefix2Mask(i + 1)));
 
-    m_ctrComboMask.SetCurSel(15); // 255.255.0.0
+    m_ctrComboMask.SetCurSel(DEFAULT_PREFIX - 1);
 }
 
 void CTabMask::calcOutput(int prefix)
@@ -46,7 +46,7 @@ void CTabMask::calcOutput(int prefix)
     m_valEditOutWild    = IP4String::addr2Str(wild);
     m_valEditOutBinWild = IP4String::addr2BinStr(wild);
 
-    m_valEditOutPrefix.Format(L"/%u", prefix);
+    m_valEditOutPrefix.Format(L"/%d", prefix);
 
     UpdateData(FALSE);
 }
@@ -84,9 +84,9 @@ BOOL CTabMask::OnInitDialog()
     initComboMask();
 
     m_ctrSliderMask.SetRange(1, 32, TRUE);
-    m_ctrSliderMask.SetPos(16); // 255.255.0.0
+    m_ctrSliderMask.SetPos(DEFAULT_PREFIX);
     
-    calcOutput(16);
+    calcOutput(DEFAULT_PREFIX);
 
     return TRUE;
 }
@@ -102,13 +102,19 @@ END_MESSAGE_MAP()
 
 void CTabMask::OnComboSelChangeMask()
 {
-    m_ctrSliderMask.SetPos(m_ctrComboMask.GetCurSel() + 1);
+    int selPrefix = m_ctrComboMask.GetCurSel() + 1;
+
+    m_ctrSliderMask.SetPos(selPrefix);
+
+    calcOutput(selPrefix);
 }
 
 void CTabMask::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-    if (pScrollBar->GetDlgCtrlID() == IDC_TAB2_SLIDER_MASK)
+    if (pScrollBar->GetDlgCtrlID() == IDC_TAB2_SLIDER_MASK) {
         m_ctrComboMask.SetCurSel(m_ctrSliderMask.GetPos() - 1);
+        calcOutput(m_ctrSliderMask.GetPos());
+    }
 
     CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
 }

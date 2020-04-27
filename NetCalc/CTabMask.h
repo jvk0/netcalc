@@ -37,4 +37,6 @@ protected:
     afx_msg void OnComboSelChangeMask();
     afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
     DECLARE_MESSAGE_MAP()   
+private:
+    static constexpr int DEFAULT_PREFIX = 16;
 };
