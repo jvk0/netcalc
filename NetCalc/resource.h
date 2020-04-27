@@ -66,7 +66,6 @@
 #define IDC_TAB2_ED_OPREFIX             1066
 #define IDC_TAB2_ED_OBMASK              1067
 #define IDC_TAB2_ED_OBWILD              1068
-#define IDC_EDIT1                       1069
 
 // Next default values for new objects
 // 

@@ -15,7 +15,7 @@ public:
     #endif
 
 protected:
-    CComboBox m_ctrComboMask;
+    CComboBox   m_ctrComboMask;
     CSliderCtrl m_ctrSliderMask;
 
     // Output variables
