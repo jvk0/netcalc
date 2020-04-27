@@ -28,4 +28,6 @@ protected:
 public:
     CComboBox m_ctrComboMask;
     CSliderCtrl m_ctrSliderMask;
+    afx_msg void OnComboSelChangeMask();
+    afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 };

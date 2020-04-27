@@ -60,8 +60,13 @@
 #define IDC_GRAPH_ST_UNUSED             1052
 #define IDC_GRAPH_ST_USED               1053
 #define IDC_TAB2_SLIDER_MASK            1059
-#define IDC_COMBO1                      1062
 #define IDC_TAB2_COMBO_MASK             1062
+#define IDC_TAB2_ED_OMASK               1064
+#define IDC_TAB2_ED_OWILD               1065
+#define IDC_TAB2_ED_OPREFIX             1066
+#define IDC_TAB2_ED_OBMASK              1067
+#define IDC_TAB2_ED_OBMASK2             1068
+#define IDC_TAB2_ED_OBWILD              1068
 
 // Next default values for new objects
 // 
@@ -69,7 +74,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        137
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1063
+#define _APS_NEXT_CONTROL_VALUE         1065
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

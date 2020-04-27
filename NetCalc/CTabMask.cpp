@@ -27,7 +27,7 @@ void CTabMask::initComboMask()
     for (int i = 0; i < 32; i++)
         m_ctrComboMask.InsertString(i, IP4String::addr2Str(IP4Calc::prefix2Mask(i + 1)));
 
-    m_ctrComboMask.SetCurSel(15);
+    m_ctrComboMask.SetCurSel(15); // 255.255.0.0
 }
 
 void CTabMask::DoDataExchange(CDataExchange* pDX)
@@ -56,6 +56,7 @@ BOOL CTabMask::OnInitDialog()
     CDialogEx::OnInitDialog();
     
     m_ctrSliderMask.SetRange(1, 32, TRUE);
+    m_ctrSliderMask.SetPos(16); // 255.255.0.0
 
     initComboMask();
 
@@ -63,7 +64,23 @@ BOOL CTabMask::OnInitDialog()
 }
 
 BEGIN_MESSAGE_MAP(CTabMask, CDialogEx)
+    ON_CBN_SELCHANGE(IDC_TAB2_COMBO_MASK, &CTabMask::OnComboSelChangeMask)
+    ON_WM_HSCROLL()
 END_MESSAGE_MAP()
+
 
 // CTabMask message handlers
 
+
+void CTabMask::OnComboSelChangeMask()
+{
+    m_ctrSliderMask.SetPos(m_ctrComboMask.GetCurSel() + 1);
+}
+
+void CTabMask::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+{
+    if (pScrollBar->GetDlgCtrlID() == IDC_TAB2_SLIDER_MASK)
+        m_ctrComboMask.SetCurSel(m_ctrSliderMask.GetPos() - 1);
+
+    CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
+}
