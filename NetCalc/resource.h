@@ -59,10 +59,8 @@
 #define IDC_HDLG_BTN_CLEAR              1050
 #define IDC_GRAPH_ST_UNUSED             1052
 #define IDC_GRAPH_ST_USED               1053
-#define IDC_TAB2_MASK                   1054
-#define IDC_TAB2_ST_PREFIX              1055
 #define IDC_TAB2_ED_PREFIX              1056
-#define IDC_TAB2_SPIN_PREFIX            1057
+#define IDC_TAB2_SLIDER_MASK            1059
 
 // Next default values for new objects
 // 
@@ -70,7 +68,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        137
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1058
+#define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

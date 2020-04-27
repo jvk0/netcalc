@@ -15,9 +15,6 @@ public:
     #endif
 
 protected:
-    CIPAddressCtrl  m_ctrIPMask;
-    CSpinButtonCtrl m_ctrSpinPrefix;
-
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     virtual void OnOK() override;
