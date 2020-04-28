@@ -21,6 +21,7 @@ protected:
     // Output variables
     CString m_valEditOutMask;
     CString m_valEditOutWild;
+    CString m_valEdOutNum;
     CString m_valEditOutPrefix;
     CString m_valEditOutBinMask;
     CString m_valEditOutBinWild;
@@ -40,5 +41,5 @@ protected:
     DECLARE_MESSAGE_MAP()   
 private:
     static constexpr int DEFAULT_PREFIX      = 16;
-    static constexpr COLORREF OUT_PREFIX_CLR = RGB(0, 0, 255);
+    static constexpr COLORREF OUT_PREFIX_CLR = RGB(0, 0, 255);  
 };

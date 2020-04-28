@@ -16,6 +16,7 @@ CTabMask::CTabMask(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB2, pParent), 
     m_valEditOutMask(_T("")),
     m_valEditOutWild(_T("")),
+    m_valEdOutNum(_T("")),
     m_valEditOutPrefix(_T("")),
     m_valEditOutBinMask(_T("")),
     m_valEditOutBinWild(_T(""))
@@ -45,6 +46,8 @@ void CTabMask::calcOutput(int prefix)
     m_valEditOutWild    = IP4String::addr2Str(wild);
     m_valEditOutBinWild = IP4String::addr2BinStr(wild);
 
+    m_valEdOutNum.Format(L"%d", IP4Calc::numHostsAddr(prefix));
+
     m_valEditOutPrefix.Format(L"/%d", prefix);
 
     UpdateData(FALSE);
@@ -57,6 +60,7 @@ void CTabMask::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TAB2_SLIDER_MASK, m_ctrSliderMask);
     DDX_Text(pDX, IDC_TAB2_ED_OMASK, m_valEditOutMask);
     DDX_Text(pDX, IDC_TAB2_ED_OWILD, m_valEditOutWild);
+    DDX_Text(pDX, IDC_TAB2_ED_ONUM, m_valEdOutNum);
     DDX_Text(pDX, IDC_TAB2_ED_OPREFIX, m_valEditOutPrefix);
     DDX_Text(pDX, IDC_TAB2_ED_OBMASK, m_valEditOutBinMask);
     DDX_Text(pDX, IDC_TAB2_ED_OBWILD, m_valEditOutBinWild);

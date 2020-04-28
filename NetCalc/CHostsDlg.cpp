@@ -157,7 +157,7 @@ void CHostsDlg::OnBntClickedClear()
 {
     int response = MessageBox(
         L"Odstrániť všetky položky?",
-        L"Nastavenie podsietí",
+        L"Ste si istý?",
         MB_OKCANCEL | MB_ICONWARNING);
 
     if (response == IDOK) {
