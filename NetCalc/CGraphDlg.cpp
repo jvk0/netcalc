@@ -1,4 +1,4 @@
-#include "pch.h"
+Ôªø#include "pch.h"
 
 #include <cmath>
 
@@ -16,8 +16,8 @@ CGraphDlg::CGraphDlg(double usedPct, CWnd* pParent /*=nullptr*/)
     m_usedPct(usedPct),
     m_unusedPct(100 - usedPct)
 {
-    m_valSTextUnused.Format(L"NevyuûitÈ Adresy (%.2f%%)", m_unusedPct);
-    m_valSTextUsed.Format(L"VyuûitÈ Adresy (%.2f%%)", m_usedPct);
+    m_valSTextUnused.Format(L"Nevyu≈æit√© Adresy (%.2f%%)", m_unusedPct);
+    m_valSTextUsed.Format(L"Vyu≈æit√© Adresy (%.2f%%)", m_usedPct);
 }
 
 CGraphDlg::~CGraphDlg()

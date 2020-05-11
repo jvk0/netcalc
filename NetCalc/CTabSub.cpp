@@ -47,7 +47,7 @@ void CTabSub::initListNets()
 
     m_ctrListNets.InsertColumn(0, L"Veľkosť siete", LVCFMT_LEFT, 95);
     m_ctrListNets.InsertColumn(1, L"Požadovaná veľkosť", LVCFMT_LEFT, 135);
-    m_ctrListNets.InsertColumn(2, L"Rozdiel", LVCFMT_LEFT, 65);
+    m_ctrListNets.InsertColumn(2, L"Rozdieľ", LVCFMT_LEFT, 65);
     m_ctrListNets.InsertColumn(3, L"Využitie [%]", LVCFMT_LEFT, 85);
     m_ctrListNets.InsertColumn(4, L"Adresa siete", LVCFMT_LEFT, 130);
     m_ctrListNets.InsertColumn(5, L"Maska", LVCFMT_LEFT, 130);
@@ -181,7 +181,7 @@ void CTabSub::OnBntClickedCalc()
         tmpStr.Format(L"%d", req);
         m_ctrListNets.SetItemText(0, 1, tmpStr); 
 
-        // Rozdiel
+        // Rozdieľ
         tmpStr.Format(L"%d", size - req);
         m_ctrListNets.SetItemText(0, 2, tmpStr);
 

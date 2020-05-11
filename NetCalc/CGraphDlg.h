@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // CGraphDlg dialog
 class CGraphDlg : public CDialogEx {
@@ -18,7 +18,7 @@ protected:
     CString m_valSTextUsed;
 
     void drawGraph(CDC& dc);
-
+    
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
     virtual void OnOK() override;
