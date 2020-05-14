@@ -130,8 +130,10 @@ void CHostsDlg::OnBntClickedAdd()
     m_outHosts.push_back(num);
     addListHostsRow(num);
     
+    m_valEdNum = '0'; // Reset input box
+
     m_sumHosts += IP4Calc::ceilHosts(num); // Update sum
-    updateSumText();
+    updateSumText(); // Also calls "UpdateData(FALSE)"
 }
 
 void CHostsDlg::OnBtnClickedRemove()
@@ -155,6 +157,11 @@ void CHostsDlg::OnBtnClickedRemove()
 
 void CHostsDlg::OnBntClickedClear()
 {
+    if (!m_ctrListHosts.GetItemCount()) {
+        MessageBeep(MB_ICONWARNING);
+        return;
+    }
+
     int response = MessageBox(
         L"Odstrániť všetky položky?",
         L"Ste si istý?",

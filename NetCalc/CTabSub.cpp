@@ -242,6 +242,9 @@ void CTabSub::OnBntClickedSave()
 
 void CTabSub::OnDblClkListNets(NMHDR* pNMHDR, LRESULT* pResult)
 {
+    if (!m_ctrListNets.GetItemCount())
+        return;
+
     LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 
     double usedPct = _wtof(m_ctrListNets.GetItemText(pNMItemActivate->iItem, 3));
