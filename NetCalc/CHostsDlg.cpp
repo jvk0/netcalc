@@ -120,9 +120,11 @@ void CHostsDlg::OnBntClickedAdd()
     int num = _ttoi(m_valEdNum);
 
     if (num < 1) {
-        MessageBox(L"Počet požadovaných adries musí byť väčší než nula!",
+        MessageBox(
+            L"Počet požadovaných adries musí byť väčší než nula!",
             L"Chybná hodnota",
-            MB_OK | MB_ICONERROR);
+            MB_OK | MB_ICONERROR
+        );
         
         return;
     }
@@ -165,7 +167,8 @@ void CHostsDlg::OnBntClickedClear()
     int response = MessageBox(
         L"Odstrániť všetky položky?",
         L"Ste si istý?",
-        MB_OKCANCEL | MB_ICONWARNING);
+        MB_OKCANCEL | MB_ICONWARNING
+    );
 
     if (response == IDOK) {
         m_outHosts.clear();

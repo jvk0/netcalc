@@ -13,7 +13,6 @@
 #define IDD_HOSTS_DIALOG                133
 #define IDD_DIALOG1                     135
 #define IDD_GRAPH_DIALOG                135
-#define IDD_OLE_PROPPAGE_LARGE          137
 #define IDD_OLE_PL_TAB3                 137
 #define IDC_TAB_MAIN                    1001
 #define IDC_TAB0_IP_ADDR                1004
@@ -69,14 +68,21 @@
 #define IDC_TAB2_ED_OBMASK              1067
 #define IDC_TAB2_ED_OBWILD              1068
 #define IDC_TAB2_ED_ONUM                1069
+#define IDC_TAB3_IP_BASE                1070
+#define IDC_TAB3_IP_WILD                1071
+#define IDC_TAB3_IP_ADDR                1072
+#define IDC_TAB3_BTN_TEST               1073
+#define IDC_TAB3_BTN_TEST2              1074
+#define IDC_TAB3_BTN_CLEAR              1074
+#define IDC_TAB3_LIST_RES               1075
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1070
+#define _APS_NEXT_CONTROL_VALUE         1076
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

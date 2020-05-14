@@ -19,5 +19,18 @@ protected:
     virtual void OnCancel() override;
 
     virtual BOOL OnInitDialog() override;
+    afx_msg void OnBntClickedTest();
     DECLARE_MESSAGE_MAP()
+public:
+    CIPAddressCtrl m_ctrIPBase;
+    CIPAddressCtrl m_ctrIPWild;
+
+    DWORD m_valIPBase;
+    DWORD m_valIPWild;
+    DWORD m_valIPAddr;
+private:
+    void initListResults();
+public:
+    CListCtrl m_ctrListResults;
+    afx_msg void OnBntClickedClear();
 };
