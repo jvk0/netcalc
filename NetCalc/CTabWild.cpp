@@ -13,7 +13,7 @@
 IMPLEMENT_DYNAMIC(CTabWild, CDialogEx)
 
 CTabWild::CTabWild(CWnd* pParent /*=nullptr*/)
-    : CDialogEx(IDD_OLE_PL_TAB3, pParent)
+    : CDialogEx(IDD_OLE_PL_TAB3, pParent),
     m_valIPBase(0),
     m_valIPWild(0),
     m_valIPAddr(0)
