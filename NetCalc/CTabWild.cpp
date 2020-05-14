@@ -14,9 +14,9 @@ IMPLEMENT_DYNAMIC(CTabWild, CDialogEx)
 
 CTabWild::CTabWild(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_OLE_PL_TAB3, pParent)
-    , m_valIPBase(0)
-    , m_valIPWild(0)
-    , m_valIPAddr(0)
+    m_valIPBase(0),
+    m_valIPWild(0),
+    m_valIPAddr(0)
 {
 }
 
@@ -88,38 +88,22 @@ void CTabWild::OnBntClickedTest()
     if ((~m_valIPWild & m_valIPBase) == (~m_valIPWild & m_valIPAddr))
         matchStr = L"Áno";
 
-    CString tmpStr;
-    
-    // Filter
-    tmpStr.Format(L"%s, %s", addr2Str(m_valIPBase), addr2Str(m_valIPWild));
-    m_ctrListResults.InsertItem(0, tmpStr);
-
     // Adresa
-    m_ctrListResults.SetItemText(0, 1, addr2Str(m_valIPAddr));
+    m_ctrListResults.InsertItem(0, addr2Str(m_valIPAddr));
 
     // Zhoda?
-    m_ctrListResults.SetItemText(0, 2, matchStr);
+    m_ctrListResults.SetItemText(0, 1, matchStr);
 
-    m_valIPAddr = 0; // Zero tesing adress
+    CString tmpStr;
+
+    // Použitý filter
+    tmpStr.Format(L"%s, %s", addr2Str(m_valIPBase), addr2Str(m_valIPWild));
+    m_ctrListResults.SetItemText(0, 2, tmpStr);
+
+    m_valIPAddr = 0; // Zero out tesing adress
 
     UpdateData(FALSE);
 }
-
-void CTabWild::initListResults()
-{
-    m_ctrListResults.SetExtendedStyle(
-        m_ctrListResults.GetExtendedStyle() |
-        0 |
-        LVS_EX_FULLROWSELECT
-    );
-
-    m_ctrListResults.InsertColumn(0, L"Filter", LVCFMT_LEFT, 170);
-    m_ctrListResults.InsertColumn(1, L"Adresa ", LVCFMT_LEFT, 110);
-    m_ctrListResults.InsertColumn(2, L"Zhoda? ", LVCFMT_LEFT, 60);
-
-    m_ctrListResults.DeleteAllItems(); // Scrollbar bug fix
-}
-
 
 void CTabWild::OnBntClickedClear()
 {
@@ -139,4 +123,21 @@ void CTabWild::OnBntClickedClear()
         m_ctrListResults.DeleteAllItems();
         UpdateData(FALSE);
     }
+}
+
+void CTabWild::initListResults()
+{
+    m_ctrListResults.SetExtendedStyle(
+        m_ctrListResults.GetExtendedStyle() |
+        LVS_EX_GRIDLINES |
+        LVS_EX_FULLROWSELECT
+    );
+
+    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 120);
+    m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 70);
+    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 200);
+
+    m_ctrListResults.SetTextColor(LIST_TEXT_CLR);
+
+    m_ctrListResults.DeleteAllItems(); // Scrollbar bug fix
 }
