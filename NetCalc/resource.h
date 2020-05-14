@@ -72,7 +72,6 @@
 #define IDC_TAB3_IP_WILD                1071
 #define IDC_TAB3_IP_ADDR                1072
 #define IDC_TAB3_BTN_TEST               1073
-#define IDC_TAB3_BTN_TEST2              1074
 #define IDC_TAB3_BTN_CLEAR              1074
 #define IDC_TAB3_LIST_RES               1075
 
