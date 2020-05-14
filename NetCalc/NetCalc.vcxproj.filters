@@ -54,6 +54,9 @@
     <ClInclude Include="CGraphDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CTabWild.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CGraphDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTabWild.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

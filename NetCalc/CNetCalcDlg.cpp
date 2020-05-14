@@ -65,6 +65,7 @@ void CNetCalcDlg::initTabs()
     m_tabCalc.Create(IDD_OLE_PL_TAB0, &m_ctrTabMain);
     m_tabSub.Create(IDD_OLE_PL_TAB1, &m_ctrTabMain);
     m_tabMask.Create(IDD_OLE_PL_TAB2, &m_ctrTabMain);
+    m_tabWild.Create(IDD_OLE_PL_TAB3, &m_ctrTabMain);
 
     TCITEM tab0;
     tab0.mask = TCIF_TEXT | TCIF_PARAM;
@@ -84,16 +85,24 @@ void CNetCalcDlg::initTabs()
     tab2.pszText = L"Maska/Prefix";
     m_ctrTabMain.InsertItem(2, &tab2);
 
+    TCITEM tab3;
+    tab3.mask = TCIF_TEXT | TCIF_PARAM;
+    tab3.lParam = reinterpret_cast<LPARAM>(&m_tabWild);
+    tab3.pszText = L"Wildcard Test";
+    m_ctrTabMain.InsertItem(3, &tab3);
+
     CRect rect;
     m_ctrTabMain.GetItemRect(0, &rect);
    
     m_tabCalc.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     m_tabSub.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     m_tabMask.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+    m_tabWild.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
     m_tabCalc.ShowWindow(SW_SHOW);
     m_tabSub.ShowWindow(SW_HIDE);
     m_tabMask.ShowWindow(SW_HIDE);
+    m_tabWild.ShowWindow(SW_HIDE);
 }
 
 BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
@@ -194,20 +203,30 @@ void CNetCalcDlg::OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult)
             m_tabCalc.ShowWindow(SW_SHOW);
             m_tabSub.ShowWindow(SW_HIDE);
             m_tabMask.ShowWindow(SW_HIDE);
+            m_tabWild.ShowWindow(SW_HIDE);
             break;
         case 1:
             m_tabCalc.ShowWindow(SW_HIDE);
             m_tabSub.ShowWindow(SW_SHOW);
             m_tabMask.ShowWindow(SW_HIDE);
+            m_tabWild.ShowWindow(SW_HIDE);
             break;
         case 2:
             m_tabCalc.ShowWindow(SW_HIDE);
             m_tabSub.ShowWindow(SW_HIDE);
             m_tabMask.ShowWindow(SW_SHOW);
+            m_tabWild.ShowWindow(SW_HIDE);
+            break;
+        case 3:
+            m_tabCalc.ShowWindow(SW_HIDE);
+            m_tabSub.ShowWindow(SW_HIDE);
+            m_tabMask.ShowWindow(SW_HIDE);
+            m_tabWild.ShowWindow(SW_SHOW);
             break;
         default:
             m_tabCalc.ShowWindow(SW_SHOW);
             m_tabSub.ShowWindow(SW_HIDE);
             m_tabMask.ShowWindow(SW_HIDE);
+            m_tabWild.ShowWindow(SW_HIDE);
     }
 }

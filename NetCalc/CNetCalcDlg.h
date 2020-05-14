@@ -3,6 +3,7 @@
 #include "CTabCalc.h"
 #include "CTabSub.h"
 #include "CTabMask.h"
+#include "CTabWild.h"
 
 class CNetCalcDlg : public CDialogEx {
 public:
@@ -20,6 +21,7 @@ protected:
     CTabCalc m_tabCalc;
     CTabSub  m_tabSub;
     CTabMask m_tabMask;
+    CTabWild m_tabWild;
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
