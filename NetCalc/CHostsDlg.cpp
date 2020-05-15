@@ -17,6 +17,7 @@ CHostsDlg::CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent /*=nullptr
     m_valEdNum(_T("0")),
     m_valSTextSum(_T(""))
 {
+    m_dlgIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME); // Main app icon
 }
 
 CHostsDlg::~CHostsDlg()
@@ -96,6 +97,9 @@ void CHostsDlg::OnCancel()
 BOOL CHostsDlg::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
+
+    SetIcon(m_dlgIcon, TRUE);
+    SetIcon(m_dlgIcon, FALSE);
 
     initListHosts();
     updateSumText();

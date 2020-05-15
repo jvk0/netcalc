@@ -18,6 +18,8 @@ public:
     IP4Calc::HostsVect getHostsVec();
     int getSumHosts();
 protected:
+    HICON m_dlgIcon;
+
     CListCtrl          m_ctrListHosts;
     
     CString            m_valEdNum;
