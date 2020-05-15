@@ -13,9 +13,6 @@ public:
         enum { IDD = IDD_OLE_PL_TAB3 };
     #endif
 protected:
-    CIPAddressCtrl m_ctrIPBase;
-    CIPAddressCtrl m_ctrIPWild;
-
     CListCtrl m_ctrListResults;
 
     DWORD m_valIPBase;

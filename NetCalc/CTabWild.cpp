@@ -27,8 +27,6 @@ CTabWild::~CTabWild()
 void CTabWild::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_TAB3_IP_BASE, m_ctrIPBase);
-    DDX_Control(pDX, IDC_TAB3_IP_WILD, m_ctrIPWild);
     DDX_IPAddress(pDX, IDC_TAB3_IP_BASE, m_valIPBase);
     DDX_IPAddress(pDX, IDC_TAB3_IP_WILD, m_valIPWild);
     DDX_IPAddress(pDX, IDC_TAB3_IP_ADDR, m_valIPAddr);
@@ -53,12 +51,12 @@ BOOL CTabWild::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
 
-    m_ctrIPBase.SetAddress(192, 168, 0, 0);
-    m_ctrIPWild.SetAddress(0, 0, 255, 255);
+    m_valIPBase = IP4Calc::makeIP4Addr(192, 168, 0, 0);
+    m_valIPWild = IP4Calc::makeIP4Addr(0, 0, 255, 255);
 
     initListResults();
 
-    UpdateData(TRUE);
+    UpdateData(FALSE);
 
     return TRUE;
 }
@@ -77,16 +75,18 @@ void CTabWild::OnBntClickedTest()
     UpdateData(TRUE);
 
     if (!m_valIPAddr) {
-        MessageBox(L"Nastavte testovanú adresu!", L"Neplatná adresa",
+        MessageBox(L"Nastavte testovanú adresu!", L"Testovaná adresa",
             MB_OK | MB_ICONERROR);
 
         return;
     }
     
-    LPCWSTR matchStr = L"Nie";
+    LPCWSTR matchStr;
 
     if ((~m_valIPWild & m_valIPBase) == (~m_valIPWild & m_valIPAddr))
-        matchStr = L"Áno";
+        matchStr = L"Áno \u2713";
+    else
+        matchStr = L"Nie  \u2717";
 
     // Adresa
     m_ctrListResults.InsertItem(0, addr2Str(m_valIPAddr));
@@ -100,7 +100,7 @@ void CTabWild::OnBntClickedTest()
     tmpStr.Format(L"%s, %s", addr2Str(m_valIPBase), addr2Str(m_valIPWild));
     m_ctrListResults.SetItemText(0, 2, tmpStr);
 
-    m_valIPAddr = 0; // Zero out tesing adress
+    m_valIPAddr = 0; // Zero out tested adress
 
     UpdateData(FALSE);
 }
@@ -127,15 +127,11 @@ void CTabWild::OnBntClickedClear()
 
 void CTabWild::initListResults()
 {
-    m_ctrListResults.SetExtendedStyle(
-        m_ctrListResults.GetExtendedStyle() |
-        LVS_EX_GRIDLINES |
-        LVS_EX_FULLROWSELECT
-    );
+    m_ctrListResults.SetExtendedStyle(m_ctrListResults.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
 
-    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 120);
-    m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 70);
-    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 200);
+    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 110);
+    m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 60);
+    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 210);
 
     m_ctrListResults.SetTextColor(LIST_TEXT_CLR);
 

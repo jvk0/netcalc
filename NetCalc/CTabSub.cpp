@@ -152,7 +152,7 @@ void CTabSub::OnBntClickedCalc()
     using namespace IP4String;
     
     if (!m_subnetHostsSum) {
-        MessageBox(L"Najskôr nastavte podsiete!", L"Chyba", MB_OK | MB_ICONERROR);
+        MessageBox(L"Najskôr nastavte podsiete!", L"Podsiete", MB_OK | MB_ICONERROR);
         return;
     }
 
