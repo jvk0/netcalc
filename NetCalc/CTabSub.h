@@ -5,7 +5,6 @@
 // CTabSub dialog
 class CTabSub : public CDialogEx {
     DECLARE_DYNAMIC(CTabSub)
-
 public:
     CTabSub(CWnd* pParent = nullptr);   //  Standard constructor
     virtual ~CTabSub();
@@ -14,8 +13,11 @@ public:
     #ifdef AFX_DESIGN_TIME
         enum { IDD = IDD_OLE_PL_TAB1 };
     #endif
+private:
+    IP4Calc::HostsVect  m_subnetHosts;
+    int                 m_subnetHostsSum;
+    int                 m_calcPrefix;   // Calculated prefix 
 
-protected:
     CIPAddressCtrl      m_ctrIPBaseNet;
     CSpinButtonCtrl     m_ctrSpinPrefix;
     CListCtrl           m_ctrListNets;
@@ -29,10 +31,10 @@ protected:
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+    virtual BOOL OnInitDialog() override;
     virtual void OnOK() override;
     virtual void OnCancel() override;
-
-    virtual BOOL OnInitDialog() override;
+        
     afx_msg void OnDeltaPosSpinPrefix(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnIPFieldChangedIPBase(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblClkListNets(NMHDR* pNMHDR, LRESULT* pResult);
@@ -40,9 +42,4 @@ protected:
     afx_msg void OnBntClickedCalc();
     afx_msg void OnBntClickedSave();
     DECLARE_MESSAGE_MAP()
-private:
-    IP4Calc::HostsVect  m_subnetHosts;
-    int                 m_subnetHostsSum;
-
-    int                 m_calcPrefix;
 };

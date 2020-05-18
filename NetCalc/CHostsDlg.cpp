@@ -12,10 +12,10 @@ IMPLEMENT_DYNAMIC(CHostsDlg, CDialogEx)
 
 CHostsDlg::CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_HOSTS_DIALOG, pParent),
-    m_sumHosts(IP4Calc::sumHostReq(inHosts)),
     m_outHosts(inHosts),
-    m_valEdNum(_T("0")),
-    m_valSTextSum(_T(""))
+    m_sumHosts(IP4Calc::sumHostReq(inHosts)),
+    m_valEdNum(L"0"),
+    m_valSTextSum(L"")
 {
     m_dlgIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME); // Main app icon
 }
@@ -75,9 +75,23 @@ void CHostsDlg::updateSumText()
 void CHostsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+
     DDX_Control(pDX, IDC_HDLG_LIST_HOSTS, m_ctrListHosts);
     DDX_Text(pDX, IDC_HDLG_ED_NUM, m_valEdNum);
     DDX_Text(pDX, IDC_HDLG_ST_SUM, m_valSTextSum);
+}
+
+BOOL CHostsDlg::OnInitDialog()
+{
+    CDialogEx::OnInitDialog();
+
+    SetIcon(m_dlgIcon, TRUE);
+    SetIcon(m_dlgIcon, FALSE);
+
+    initListHosts();
+    updateSumText();
+
+    return TRUE;
 }
 
 void CHostsDlg::OnOK()
@@ -92,19 +106,6 @@ void CHostsDlg::OnCancel()
     // Prevent Esc from closing the dialog  
     if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
         CDialog::OnCancel();
-}
-
-BOOL CHostsDlg::OnInitDialog()
-{
-    CDialogEx::OnInitDialog();
-
-    SetIcon(m_dlgIcon, TRUE);
-    SetIcon(m_dlgIcon, FALSE);
-
-    initListHosts();
-    updateSumText();
-
-    return TRUE;
 }
 
 

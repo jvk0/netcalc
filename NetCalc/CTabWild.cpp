@@ -24,27 +24,27 @@ CTabWild::~CTabWild()
 {
 }
 
+void CTabWild::initListResults()
+{
+    m_ctrListResults.SetExtendedStyle(m_ctrListResults.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
+
+    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 110);
+    m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 60);
+    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 210);
+
+    m_ctrListResults.SetTextColor(LIST_TEXT_CLR);
+
+    m_ctrListResults.DeleteAllItems(); // Scrollbar bug fix
+}
+
 void CTabWild::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+
+    DDX_Control(pDX, IDC_TAB3_LIST_RES, m_ctrListResults);
     DDX_IPAddress(pDX, IDC_TAB3_IP_BASE, m_valIPBase);
     DDX_IPAddress(pDX, IDC_TAB3_IP_WILD, m_valIPWild);
     DDX_IPAddress(pDX, IDC_TAB3_IP_ADDR, m_valIPAddr);
-    DDX_Control(pDX, IDC_TAB3_LIST_RES, m_ctrListResults);
-}
-
-void CTabWild::OnOK()
-{
-    // Prevent Enter from closing the dialog  
-    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
-        CTabWild::OnOK();
-}
-
-void CTabWild::OnCancel()
-{
-    // Prevent Esc from closing the dialog  
-    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
-        CTabWild::OnCancel();
 }
 
 BOOL CTabWild::OnInitDialog()
@@ -59,6 +59,20 @@ BOOL CTabWild::OnInitDialog()
     UpdateData(FALSE);
 
     return TRUE;
+}
+
+void CTabWild::OnOK()
+{
+    // Prevent Enter from closing the dialog  
+    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
+        CTabWild::OnOK();
+}
+
+void CTabWild::OnCancel()
+{
+    // Prevent Esc from closing the dialog  
+    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
+        CTabWild::OnCancel();
 }
 
 
@@ -123,17 +137,4 @@ void CTabWild::OnBntClickedClear()
         m_ctrListResults.DeleteAllItems();
         UpdateData(FALSE);
     }
-}
-
-void CTabWild::initListResults()
-{
-    m_ctrListResults.SetExtendedStyle(m_ctrListResults.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
-
-    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 110);
-    m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 60);
-    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 210);
-
-    m_ctrListResults.SetTextColor(LIST_TEXT_CLR);
-
-    m_ctrListResults.DeleteAllItems(); // Scrollbar bug fix
 }

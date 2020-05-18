@@ -80,6 +80,7 @@ void CTabCalc::clearOutput()
 void CTabCalc::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+
     DDX_Control(pDX, IDC_TAB0_IP_ADDR, m_ctrIPAddr);
     DDX_Control(pDX, IDC_TAB0_IP_MASK, m_ctrIPMask);
     DDX_Control(pDX, IDC_TAB0_ST_MASKVALID, m_ctrSTextMaskValid);
@@ -105,20 +106,6 @@ void CTabCalc::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_TAB0_ST_OINFO, m_valSTextOutInfo);
 }
 
-void CTabCalc::OnOK()
-{
-    // Prevent Enter from closing the dialog  
-    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
-        CDialogEx::OnOK();
-}
-
-void CTabCalc::OnCancel()
-{
-    // Prevent Esc from closing the dialog  
-    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
-        CDialog::OnCancel();
-}
-
 BOOL CTabCalc::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
@@ -131,8 +118,22 @@ BOOL CTabCalc::OnInitDialog()
 
     m_ctrSpinPrefix.SetRange(1, 32);
     m_ctrSpinPrefix.SetPos(16); // 255.255.0.0
-    
+
     return TRUE;
+}
+
+void CTabCalc::OnOK()
+{
+    // Prevent Enter from closing the dialog  
+    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
+        CDialogEx::OnOK();
+}
+
+void CTabCalc::OnCancel()
+{
+    // Prevent Esc from closing the dialog  
+    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
+        CDialog::OnCancel();
 }
 
 

@@ -7,7 +7,8 @@
     #define new DEBUG_NEW
 #endif
 
-// CAboutDlg dialog used for App About
+// ********* CAboutDlg (Used for About...) *********
+
 class CAboutDlg : public CDialogEx {
 public:
     CAboutDlg();
@@ -15,7 +16,7 @@ public:
     #ifdef AFX_DESIGN_TIME
         enum { IDD = IDD_ABOUTBOX };
     #endif
-protected:
+private:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     DECLARE_MESSAGE_MAP()
@@ -30,38 +31,21 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
 }
 
+
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
-// CNetCalcDlg dialog
+
+// ********* CNetCalcDlg dialog *********
+
 CNetCalcDlg::CNetCalcDlg(CWnd* pParent /*=nullptr*/)
     : CDialogEx(IDD_NETCALC_DIALOG, pParent)
 {
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void CNetCalcDlg::DoDataExchange(CDataExchange* pDX)
-{
-    CDialogEx::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_TAB_MAIN, m_ctrTabMain);
-}
-
-void CNetCalcDlg::OnOK()
-{
-    // Prevent Enter from closing the dialog  
-    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
-        CDialog::OnOK();
-}
-
-void CNetCalcDlg::OnCancel()
-{
-    // Prevent Esc from closing the dialog  
-    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
-        CDialog::OnCancel();
-}
-
 void CNetCalcDlg::initTabs()
-{  
+{
     m_tabCalc.Create(IDD_OLE_PL_TAB0, &m_ctrTabMain);
     m_tabSub.Create(IDD_OLE_PL_TAB1, &m_ctrTabMain);
     m_tabMask.Create(IDD_OLE_PL_TAB2, &m_ctrTabMain);
@@ -93,7 +77,7 @@ void CNetCalcDlg::initTabs()
 
     CRect rect;
     m_ctrTabMain.GetItemRect(0, &rect);
-   
+
     m_tabCalc.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     m_tabSub.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
     m_tabMask.SetWindowPos(NULL, rect.left, rect.bottom + 1, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -105,6 +89,28 @@ void CNetCalcDlg::initTabs()
     m_tabWild.ShowWindow(SW_HIDE);
 }
 
+void CNetCalcDlg::DoDataExchange(CDataExchange* pDX)
+{
+    CDialogEx::DoDataExchange(pDX);
+
+    DDX_Control(pDX, IDC_TAB_MAIN, m_ctrTabMain);
+}
+
+void CNetCalcDlg::OnOK()
+{
+    // Prevent Enter from closing the dialog  
+    if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
+        CDialog::OnOK();
+}
+
+void CNetCalcDlg::OnCancel()
+{
+    // Prevent Esc from closing the dialog  
+    if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
+        CDialog::OnCancel();
+}
+
+
 BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
     ON_WM_SYSCOMMAND()
     ON_WM_PAINT()
@@ -114,7 +120,10 @@ BEGIN_MESSAGE_MAP(CNetCalcDlg, CDialogEx)
     #pragma warning(default: 26454)
 END_MESSAGE_MAP()
 
+
 // CNetCalcDlg message handlers
+
+
 BOOL CNetCalcDlg::OnInitDialog()
 {
     CDialogEx::OnInitDialog();

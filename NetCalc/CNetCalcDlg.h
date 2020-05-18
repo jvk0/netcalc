@@ -13,7 +13,7 @@ public:
     #ifdef AFX_DESIGN_TIME
         enum { IDD = IDD_NETCALC_DIALOG };
     #endif
-protected:
+private:
     HICON m_hIcon;
 
     CTabCtrl m_ctrTabMain;
@@ -23,19 +23,17 @@ protected:
     CTabMask m_tabMask;
     CTabWild m_tabWild;
 
+    void initTabs();
+
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
     virtual void OnOK() override;
     virtual void OnCancel() override;
-
-    void initTabs();
-
-    // Generated message map functions
-    afx_msg void OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult);
-    virtual BOOL OnInitDialog();
+        
+    virtual BOOL OnInitDialog(); // Initialization
     afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
     afx_msg void OnPaint();
     afx_msg HCURSOR OnQueryDragIcon();
+    afx_msg void OnTcnSelChangeTabMain(NMHDR* pNMHDR, LRESULT* pResult);
     DECLARE_MESSAGE_MAP()
 };
-

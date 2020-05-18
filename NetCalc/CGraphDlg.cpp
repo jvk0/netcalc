@@ -104,6 +104,7 @@ void CGraphDlg::drawGraph(CDC& dc)
 void CGraphDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+
     DDX_Text(pDX, IDC_GRAPH_ST_UNUSED, m_valSTextUnused);
     DDX_Text(pDX, IDC_GRAPH_ST_USED, m_valSTextUsed);
 }
@@ -114,6 +115,7 @@ void CGraphDlg::OnOK()
     if ((GetKeyState(VK_RETURN) & 0x8000) == 0)
         CDialogEx::OnOK();
 }
+
 
 BEGIN_MESSAGE_MAP(CGraphDlg, CDialogEx)
     ON_WM_PAINT()

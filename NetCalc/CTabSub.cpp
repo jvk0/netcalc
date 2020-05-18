@@ -19,7 +19,7 @@ CTabSub::CTabSub(CWnd* pParent /*=nullptr*/)
     m_subnetHostsSum(0),
     m_calcPrefix(0),
     m_valIPBaseNet(0),
-    m_valSTextInfo(_T(""))
+    m_valSTextInfo(L"")
 {
 }
 
@@ -60,12 +60,29 @@ void CTabSub::initListNets()
 void CTabSub::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
-    DDX_IPAddress(pDX, IDC_TAB1_IP_BASE, m_valIPBaseNet);
-    DDX_Control(pDX, IDC_TAB1_SPIN_PREFIX, m_ctrSpinPrefix);
-    DDX_Text(pDX, IDC_TAB1_ST_INFO, m_valSTextInfo);
+
     DDX_Control(pDX, IDC_TAB1_IP_BASE, m_ctrIPBaseNet);
+    DDX_Control(pDX, IDC_TAB1_SPIN_PREFIX, m_ctrSpinPrefix);
     DDX_Control(pDX, IDC_TAB1_LIST_NETS, m_ctrListNets);
     DDX_Control(pDX, IDC_TAB1_BNT_SAVE, m_ctrBtnSave);
+    DDX_IPAddress(pDX, IDC_TAB1_IP_BASE, m_valIPBaseNet);
+    DDX_Text(pDX, IDC_TAB1_ST_INFO, m_valSTextInfo);
+}
+
+BOOL CTabSub::OnInitDialog()
+{
+    CDialogEx::OnInitDialog();
+
+    m_ctrIPBaseNet.SetAddress(192, 168, 0, 0);
+
+    m_ctrSpinPrefix.SetRange(1, 32);
+    m_ctrSpinPrefix.SetPos(16); // 255.255.0.0
+    m_calcPrefix = 16; // Manually update prefix 
+
+    updateInfoStr();
+    initListNets();
+
+    return TRUE;
 }
 
 void CTabSub::OnOK()
@@ -82,21 +99,6 @@ void CTabSub::OnCancel()
         CDialog::OnCancel();
 }
 
-BOOL CTabSub::OnInitDialog()
-{
-    CDialogEx::OnInitDialog();
-
-    m_ctrIPBaseNet.SetAddress(192, 168, 0, 0);
-    
-    m_ctrSpinPrefix.SetRange(1, 32);
-    m_ctrSpinPrefix.SetPos(16); // 255.255.0.0
-    m_calcPrefix = 16; // Manually update prefix 
-    
-    updateInfoStr();
-    initListNets();
-
-    return TRUE;
-}
 
 BEGIN_MESSAGE_MAP(CTabSub, CDialogEx)
     #pragma warning(disable: 26454)

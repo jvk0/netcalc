@@ -1,10 +1,8 @@
 #pragma once
 
-
 // CTabCalc dialog
 class CTabCalc : public CDialogEx {
     DECLARE_DYNAMIC(CTabCalc)
-
 public:
     CTabCalc(CWnd* pParent = nullptr);  // Standard constructor
     virtual ~CTabCalc();
@@ -13,8 +11,7 @@ public:
     #ifdef AFX_DESIGN_TIME
         enum { IDD = IDD_OLE_PL_TAB0 };
     #endif
-
-protected:
+private:
     CIPAddressCtrl  m_ctrIPAddr;
     CIPAddressCtrl  m_ctrIPMask;
     CStatic         m_ctrSTextMaskValid;
@@ -51,6 +48,7 @@ protected:
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+    virtual BOOL OnInitDialog() override;
     virtual void OnOK() override;
     virtual void OnCancel() override;
 
@@ -58,6 +56,5 @@ protected:
     afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedCalc();
     afx_msg void OnBntClickedClear();
-    virtual BOOL OnInitDialog() override;
     DECLARE_MESSAGE_MAP()       
 };

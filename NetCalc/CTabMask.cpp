@@ -56,6 +56,7 @@ void CTabMask::calcOutput(int prefix)
 void CTabMask::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
+
     DDX_Control(pDX, IDC_TAB2_COMBO_MASK, m_ctrComboMask);
     DDX_Control(pDX, IDC_TAB2_SLIDER_MASK, m_ctrSliderMask);
     DDX_Text(pDX, IDC_TAB2_ED_OMASK, m_valEditOutMask);
@@ -64,6 +65,20 @@ void CTabMask::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_TAB2_ED_OPREFIX, m_valEditOutPrefix);
     DDX_Text(pDX, IDC_TAB2_ED_OBMASK, m_valEditOutBinMask);
     DDX_Text(pDX, IDC_TAB2_ED_OBWILD, m_valEditOutBinWild);
+}
+
+BOOL CTabMask::OnInitDialog()
+{
+    CDialogEx::OnInitDialog();
+
+    initComboMask();
+
+    m_ctrSliderMask.SetRange(1, 32, TRUE);
+    m_ctrSliderMask.SetPos(DEFAULT_PREFIX);
+
+    calcOutput(DEFAULT_PREFIX);
+
+    return TRUE;
 }
 
 void CTabMask::OnOK()
@@ -78,20 +93,6 @@ void CTabMask::OnCancel()
     // Prevent Esc from closing the dialog  
     if ((GetKeyState(VK_ESCAPE) & 0x8000) == 0)
         CDialog::OnCancel();
-}
-
-BOOL CTabMask::OnInitDialog()
-{
-    CDialogEx::OnInitDialog();
-   
-    initComboMask();
-
-    m_ctrSliderMask.SetRange(1, 32, TRUE);
-    m_ctrSliderMask.SetPos(DEFAULT_PREFIX);
-    
-    calcOutput(DEFAULT_PREFIX);
-
-    return TRUE;
 }
 
 

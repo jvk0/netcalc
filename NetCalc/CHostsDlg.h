@@ -5,9 +5,8 @@
 // CHostsDlg dialog
 class CHostsDlg : public CDialogEx {
     DECLARE_DYNAMIC(CHostsDlg)
-
 public:
-    CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent = nullptr); // Modified standard constructor
+    CHostsDlg(const IP4Calc::HostsVect& inHosts, CWnd* pParent = nullptr);
     virtual ~CHostsDlg();
 
     // Dialog Data
@@ -17,7 +16,10 @@ public:
 
     IP4Calc::HostsVect getHostsVec();
     int getSumHosts();
-protected:
+private:
+    IP4Calc::HostsVect m_outHosts;
+    int                m_sumHosts;
+
     HICON m_dlgIcon;
 
     CListCtrl          m_ctrListHosts;
@@ -31,15 +33,12 @@ protected:
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
+    virtual BOOL OnInitDialog() override;
     virtual void OnOK() override;
     virtual void OnCancel() override;
 
-    virtual BOOL OnInitDialog() override;
     afx_msg void OnBntClickedAdd();
     afx_msg void OnBtnClickedRemove();
     afx_msg void OnBntClickedClear();
     DECLARE_MESSAGE_MAP()  
-private:
-    IP4Calc::HostsVect m_outHosts;
-    int                m_sumHosts;
 };
