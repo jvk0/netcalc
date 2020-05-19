@@ -30,7 +30,7 @@ void CTabWild::initListResults()
 
     m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 110);
     m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 60);
-    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 210);
+    m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 220);
 
     m_ctrListResults.SetTextColor(LIST_TEXT_CLR);
 
