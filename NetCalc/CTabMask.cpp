@@ -117,7 +117,7 @@ void CTabMask::OnComboSelChangeMask()
 
 void CTabMask::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-    if (pScrollBar->GetDlgCtrlID() == IDC_TAB2_SLIDER_MASK) {
+    if (pScrollBar == GetDlgItem(IDC_TAB2_SLIDER_MASK)) {
         m_ctrComboMask.SetCurSel(m_ctrSliderMask.GetPos() - 1);
         calcOutput(m_ctrSliderMask.GetPos());
     }
