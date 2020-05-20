@@ -3,3 +3,19 @@ Original Filename: iconfinder_preferences-system-network_8843.ico
 Author: Oxygen Team (http://www.oxygen-icons.org/)
 Source: https://www.iconfinder.com/iconsets/oxygen
 License: CC BY-NC-ND 2.5 (https://creativecommons.org/licenses/by-nc-nd/2.5/)
+
+Filename: BinaryCode.ico (Converted from .SVG file)
+Original Filename: binary-code.svg
+Title: Binary Code
+Author: Freepik (http://www.freepik.com)
+Source: https://www.flaticon.com/free-icon/binary-code_940595
+License: Flaticon License (https://profile.flaticon.com/license/free)
+Attribution Text: Icon made by Freepik from www.flaticon.com
+
+Filename: Exchange.ico (Converted from .SVG file)
+Original Filename: exchange.svg
+Title: Exchange
+Author: Smartline (https://www.flaticon.com/authors/smartline)
+Source: https://www.flaticon.com/free-icon/exchange_570226
+License: Flaticon License (https://profile.flaticon.com/license/free)
+Attribution Text: Icon made by Smartline from www.flaticon.com

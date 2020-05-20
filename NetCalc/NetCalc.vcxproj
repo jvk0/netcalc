@@ -223,7 +223,12 @@
     <None Include="res\NetCalc.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\BinaryCode.ico" />
+    <Image Include="res\Exchange.ico" />
     <Image Include="res\NetCalc.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\ATTRIBUTION.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
