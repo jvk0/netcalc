@@ -172,7 +172,7 @@ void CHostsDlg::OnBntClickedClear()
     int response = MessageBox(
         L"Odstrániť všetky položky?",
         L"Ste si istý?",
-        MB_OKCANCEL | MB_ICONWARNING
+        MB_OKCANCEL | MB_DEFBUTTON2 | MB_ICONWARNING
     );
 
     if (response == IDOK) {

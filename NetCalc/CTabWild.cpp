@@ -129,7 +129,7 @@ void CTabWild::OnBntClickedClear()
     int response = MessageBox(
         L"Vymazať tabuľku?",
         L"Ste si istý?",
-        MB_OKCANCEL | MB_ICONWARNING
+        MB_OKCANCEL | MB_DEFBUTTON2 | MB_ICONWARNING
     );
 
     if (response == IDOK) {
