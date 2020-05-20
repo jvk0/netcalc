@@ -17,10 +17,10 @@ public:
     IP4Calc::HostsVect getHostsVec();
     int getSumHosts();
 private:
+    HICON m_dlgIcon;
+
     IP4Calc::HostsVect m_outHosts;
     int                m_sumHosts;
-
-    HICON m_dlgIcon;
 
     CListCtrl          m_ctrListHosts;
     

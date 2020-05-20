@@ -16,6 +16,8 @@ private:
     static constexpr COLORREF sliceColor[2] = {RGB(74, 134, 232), RGB(106, 168, 79)};
     static constexpr COLORREF outlineColor  = RGB(240, 240, 240);
 
+    HICON m_dlgIcon;
+
     double m_usedPct;
     double m_unusedPct;
 
@@ -26,6 +28,7 @@ private:
     
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     
+    virtual BOOL OnInitDialog() override;
     virtual void OnOK() override;
 
     afx_msg void OnPaint();

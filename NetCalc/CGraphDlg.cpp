@@ -16,6 +16,8 @@ CGraphDlg::CGraphDlg(double usedPct, CWnd* pParent /*=nullptr*/)
     m_usedPct(usedPct),
     m_unusedPct(100 - usedPct)
 {
+    m_dlgIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME); // Main app icon
+
     m_valSTextUnused.Format(L"Nevyužité Adresy (%.2f%%)", m_unusedPct);
     m_valSTextUsed.Format(L"Využité Adresy (%.2f%%)", m_usedPct);
 }
@@ -107,6 +109,16 @@ void CGraphDlg::DoDataExchange(CDataExchange* pDX)
 
     DDX_Text(pDX, IDC_GRAPH_ST_UNUSED, m_valSTextUnused);
     DDX_Text(pDX, IDC_GRAPH_ST_USED, m_valSTextUsed);
+}
+
+BOOL CGraphDlg::OnInitDialog()
+{
+    CDialogEx::OnInitDialog();
+
+    SetIcon(m_dlgIcon, TRUE);
+    SetIcon(m_dlgIcon, FALSE);
+
+    return TRUE;
 }
 
 void CGraphDlg::OnOK()
