@@ -76,6 +76,7 @@ void CHostsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
 
+    DDX_Control(pDX, IDC_HDLG_ED_NUM, m_ctrEdNum);
     DDX_Control(pDX, IDC_HDLG_LIST_HOSTS, m_ctrListHosts);
     DDX_Text(pDX, IDC_HDLG_ED_NUM, m_valEdNum);
     DDX_Text(pDX, IDC_HDLG_ST_SUM, m_valSTextSum);
@@ -130,17 +131,20 @@ void CHostsDlg::OnBntClickedAdd()
             L"Chybná hodnota",
             MB_OK | MB_ICONERROR
         );
-        
+
         return;
     }
 
     m_outHosts.push_back(num);
     addListHostsRow(num);
-    
+
     m_valEdNum = '0'; // Reset input box
 
     m_sumHosts += IP4Calc::ceilHosts(num); // Update sum
     updateSumText(); // Also calls "UpdateData(FALSE)"
+
+    m_ctrEdNum.SetFocus(); // Focus to input box
+    m_ctrEdNum.SetSel(0, -1); // Select all
 }
 
 void CHostsDlg::OnBtnClickedRemove()

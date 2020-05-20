@@ -22,6 +22,7 @@ private:
     IP4Calc::HostsVect m_outHosts;
     int                m_sumHosts;
 
+    CEdit              m_ctrEdNum;
     CListCtrl          m_ctrListHosts;
     
     CString            m_valEdNum;
@@ -40,5 +41,5 @@ private:
     afx_msg void OnBntClickedAdd();
     afx_msg void OnBtnClickedRemove();
     afx_msg void OnBntClickedClear();
-    DECLARE_MESSAGE_MAP()  
+    DECLARE_MESSAGE_MAP()
 };
