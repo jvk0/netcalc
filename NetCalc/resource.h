@@ -2,7 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by NetCalc.rc
 //
-#define IDI_EXCHANGE                    5
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
@@ -16,7 +15,7 @@
 #define IDD_GRAPH_DIALOG                135
 #define IDD_OLE_PL_TAB3                 137
 #define IDI_BINARY                      139
-#define IDI_ICON1                       140
+#define IDI_EXCHANGE                    140
 #define IDC_TAB_MAIN                    1001
 #define IDC_TAB0_IP_ADDR                1004
 #define IDC_TAB0_IP_MASK                1005
