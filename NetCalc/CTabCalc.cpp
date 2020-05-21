@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 #include "resource.h"
 
@@ -43,12 +43,16 @@ bool CTabCalc::checkMask()
 {
     UpdateData(TRUE);
 
-    if (!IP4Calc::isMaskValid(m_valIPMask)) {
-        m_ctrSTextMaskValid.SetWindowTextW(L"Maska nie je platn�!");
+    if (!m_valIPMask) {
+        m_ctrSTextMaskValid.SetWindowTextW(L"Maska nemôže byť nulová!");
+        m_ctrEdPrefix.SetWindowTextW(L"!");
+        return false;
+    } else if (!IP4Calc::isMaskValid(m_valIPMask)) {
+        m_ctrSTextMaskValid.SetWindowTextW(L"Maska nie je platná!");
         m_ctrEdPrefix.SetWindowTextW(L"!");
         return false;
     } else {
-        m_ctrSTextMaskValid.SetWindowTextW(L"Maska je platn� :)");
+        m_ctrSTextMaskValid.SetWindowTextW(L"Maska je platná :)");
         return true;
     }
 }
@@ -112,7 +116,6 @@ BOOL CTabCalc::OnInitDialog()
 
     m_ctrIPAddr.SetAddress(192, 168, 0, 1);
     m_ctrIPMask.SetAddress(255, 255, 0, 0); // Valid mask
-    m_ctrIPMask.SetFieldRange(0, 128, 255);
 
     checkMask();
 
@@ -192,7 +195,7 @@ void CTabCalc::OnBntClickedCalc()
 {
     if (!checkMask()) { // UpdateData(TRUE) was called in checkMask()
         clearOutput();
-        MessageBox(L"Zadajte platn� masku siete!", L"Neplatn� maska", MB_OK | MB_ICONERROR);
+        MessageBox(L"Zadajte platnú masku siete!", L"Neplatná maska", MB_OK | MB_ICONERROR);
         return;
     } 
 

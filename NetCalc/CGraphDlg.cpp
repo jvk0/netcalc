@@ -100,7 +100,6 @@ void CGraphDlg::drawGraph(CDC& dc)
 
         endStep  = 1.0;
     }
-
 }
 
 void CGraphDlg::DoDataExchange(CDataExchange* pDX)
