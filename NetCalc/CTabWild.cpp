@@ -28,7 +28,7 @@ void CTabWild::initListResults()
 {
     m_ctrListResults.SetExtendedStyle(m_ctrListResults.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
 
-    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 110);
+    m_ctrListResults.InsertColumn(0, L"Adresa", LVCFMT_LEFT, 120);
     m_ctrListResults.InsertColumn(1, L"Zhoda? ", LVCFMT_LEFT, 60);
     m_ctrListResults.InsertColumn(2, L"Použitý filter", LVCFMT_LEFT, 220);
 
