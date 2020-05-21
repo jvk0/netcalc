@@ -112,7 +112,7 @@ BOOL CTabCalc::OnInitDialog()
 
     m_ctrIPAddr.SetAddress(192, 168, 0, 1);
     m_ctrIPMask.SetAddress(255, 255, 0, 0); // Valid mask
-    m_ctrIPMask.SetFieldRange(0, 1, 255);
+    m_ctrIPMask.SetFieldRange(0, 128, 255);
 
     checkMask();
 
