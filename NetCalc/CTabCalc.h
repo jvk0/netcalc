@@ -52,6 +52,7 @@ private:
     virtual void OnOK() override;
     virtual void OnCancel() override;
 
+    afx_msg void OnIPFieldChangedCalcAddr(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDeltaPosSpinCalcPref(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBntClickedCalc();

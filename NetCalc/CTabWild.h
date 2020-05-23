@@ -12,7 +12,7 @@ public:
         enum { IDD = IDD_OLE_PL_TAB3 };
     #endif
 private:
-    static constexpr COLORREF LIST_TEXT_CLR = RGB(72, 140, 234); // Looks better
+    static constexpr COLORREF LIST_TEXT_CLR = RGB(74, 134, 232); // Looks better
 
     CListCtrl m_ctrListResults;
 

@@ -13,7 +13,7 @@ public:
     #endif
 private:
     static constexpr int      DEFAULT_PREFIX = 16;
-    static constexpr COLORREF OUT_PREFIX_CLR = RGB(0, 0, 255);
+    static constexpr COLORREF OUT_PREFIX_CLR = RGB(0, 122, 217);
 
     CComboBox   m_ctrComboMask;
     CSliderCtrl m_ctrSliderMask;

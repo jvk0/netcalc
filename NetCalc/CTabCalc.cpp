@@ -142,6 +142,7 @@ void CTabCalc::OnCancel()
 
 BEGIN_MESSAGE_MAP(CTabCalc, CDialogEx)
     #pragma warning(disable: 26454)
+    ON_NOTIFY(IPN_FIELDCHANGED, IDC_TAB0_IP_ADDR, &CTabCalc::OnIPFieldChangedCalcAddr)
     ON_NOTIFY(IPN_FIELDCHANGED, IDC_TAB0_IP_MASK, &CTabCalc::OnIPFieldChangedCalcMask)
     ON_NOTIFY(UDN_DELTAPOS, IDC_TAB0_SPIN_PREFIX, &CTabCalc::OnDeltaPosSpinCalcPref)
     #pragma warning(default: 26454)
@@ -152,6 +153,15 @@ END_MESSAGE_MAP()
 
 // CTabCalc message handlers
 
+
+void CTabCalc::OnIPFieldChangedCalcAddr(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // LPNMIPADDRESS pIPAddr = reinterpret_cast<LPNMIPADDRESS>(pNMHDR);
+
+    UpdateData(TRUE); // Spin edit bug fix
+
+    *pResult = 0;
+}
 
 void CTabCalc::OnIPFieldChangedCalcMask(NMHDR* pNMHDR, LRESULT* pResult)
 {
