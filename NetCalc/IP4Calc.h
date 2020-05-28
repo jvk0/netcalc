@@ -12,8 +12,7 @@ using IP4Prefix      = uint8_t;
 using HostsVect      = std::vector<int>;
 using IP4SubnetsVect = std::vector<std::tuple<IP4Addr, IP4Prefix, int, int>>;
 
-constexpr IP4Addr IP4_MAX    = UINT32_MAX;
-constexpr size_t OCTSTR_SIZE = sizeof(Octet) * 8 + 1;
+constexpr IP4Addr IP4_MAX = UINT32_MAX;
 
 IP4Addr makeIP4Addr(Octet first, Octet second, Octet third, Octet fourth);
 Octet firstOctet(IP4Addr addr);
